@@ -1,0 +1,59 @@
+---
+title: "Basic Examples TTS Web API"
+author: "Andrei Pazniak"
+date: "Wednesday, May 13, 2015"
+output:
+  slidy_presentation: default
+  ioslides_presentation:
+    self_contained: no
+  beamer_presentation: default
+---
+
+## Prereqisitues
+```{r, warning=FALSE, results='hold', error=FALSE, message=FALSE}
+if (!require("jsonlite")) 
+    install.packages("jsonlite", repos="http://cran.rstudio.com/")
+library(jsonlite)
+```
+
+## Get currencies
+```{r}
+fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/currency")
+```
+
+## Get currency properies
+```{r}
+fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/currency/EUR")
+
+```
+
+## Get symbols
+```{r}
+fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol")
+```
+
+## Get symbol properties
+```{r}
+str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol/EURUSD"))
+```
+
+## Get ticks for all symbols
+```{r}
+str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/tick"))
+```
+
+## Get best bid/ask for symbol
+```{r}
+str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/tick/EURUSD"))
+```
+
+## Get Level2 for all symbols
+```{r}
+str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/level2"))
+```
+
+## Get Level2 for symbol
+```{r}
+str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/level2/EURUSD"))
+```
+
