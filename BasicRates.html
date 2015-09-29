@@ -46,31 +46,48 @@ Andrei Pazniak
 </div>
 <div id="get-currencies" class="slide section level2">
 <h1>Get currencies</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/currency&quot;</span>)</code></pre>
-<pre><code>##    Name Precision          Description
-## 1   USD         2 United States Dollar
-## 2   EUR         2                 Euro
-## 3   CAD         2      Canadian Dollar
-## 4   GBP         2  Great Britain Pound
-## 5   AUD         2    Australian Dollar
-## 6   CHF         2          Swiss Franc
-## 7   NZD         2   New Zealand Dollar
-## 8   SEK         2        Swedish Krona
-## 9   JPY         2         Japanese Yen
-## 10  NOK         2      Norwegian Krone
-## 11  RUB         2        Russian Ruble
-## 12  DKK         2        Danish Kronor
-## 13  SGD         2     Singapore Dollar
-## 14  TRY         2         Turkish Lira
-## 15  HKD         2     Hong Kong Dollar
-## 16  PLN         2         Polish Zloty
-## 17  MXN         2         Mexican Peso
-## 18  XAG         2         Silver Metal
-## 19  XAU         2           Gold Metal</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/currency&quot;</span>)</code></pre>
+<pre><code>##    Name Precision           Description
+## 1   USD         2             US Dollar
+## 2   EUR         2                  Euro
+## 3   GBP         2   Great Britain Pound
+## 4   JPY         2          Japanese Yen
+## 5   CHF         2           Swiss Franc
+## 6   AUD         2     Australian Dollar
+## 7   CAD         2       Canadian Dollar
+## 8   NZD         2    New Zealand Dollar
+## 9   MXN         2          Mexican Peso
+## 10  CNH         2 Chinese Offshore Yuan
+## 11  SEK         2         Swedish Krona
+## 12  RUB         2        Russian Rouble
+## 13  HKD         2      Hong Kong Dollar
+## 14  NOK         2       Norwegian Krone
+## 15  SGD         2      Singapore Dollar
+## 16  TRY         2          Turkish Lira
+## 17  DKK         2         Danish Kronor
+## 18  PLN         2          Polish Zloty
+## 19  XAG         2                Silver
+## 20  XAU         2                  Gold
+## 21  ASX         2         Australia 200
+## 22  CAC         2             France 40
+## 23  DAX         2             German 30
+## 24  DA1         2      German 30 (Mini)
+## 25  ESX         2             Europe 50
+## 26  UKX         2                UK 100
+## 27  NKY         2             Japan 225
+## 28  NDX         2           US Tech 100
+## 29  ND1         2    US Tech 100 (Mini)
+## 30  SPX         2            US SPX 500
+## 31  SP1         2     US SPX 500 (Mini)
+## 32  DJI         2        Wall Street 30
+## 33  DJ1         2 Wall Street 30 (Mini)
+## 34  XBR         2              UK Brent
+## 35  XTI         2              US Crude
+## 36  XNG         2        US Natural Gas</code></pre>
 </div>
 <div id="get-currency-properies" class="slide section level2">
 <h1>Get currency properies</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/currency/EUR&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/currency/EUR&quot;</span>)</code></pre>
 <pre><code>## $Name
 ## [1] &quot;EUR&quot;
 ## 
@@ -82,275 +99,498 @@ Andrei Pazniak
 </div>
 <div id="get-symbols" class="slide section level2">
 <h1>Get symbols</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol&quot;</span>)</code></pre>
-<pre><code>##    Symbol Precision TradeIsAllowed MarginMode ProfitMode ContractSize
-## 1  EURUSD         5           TRUE      Forex      Forex       100000
-## 2  XAGUSD         3           TRUE        CFD        CFD            0
-## 3  EURAUD         5           TRUE      Forex      Forex       100000
-## 4  XAUUSD         2           TRUE        CFD        CFD            0
-## 5  USDCAD         5           TRUE      Forex      Forex       100000
-## 6  USDCHF         5           TRUE      Forex      Forex       100000
-## 7  EURCAD         5           TRUE      Forex      Forex       100000
-## 8  CADJPY         3           TRUE      Forex      Forex       100000
-## 9  EURJPY         3           TRUE      Forex      Forex       100000
-## 10 GBPJPY         3           TRUE      Forex      Forex       100000
-## 11 USDSEK         5           TRUE      Forex      Forex       100000
-## 12 USDNOK         5           TRUE      Forex      Forex       100000
-## 13 AUDUSD         5           TRUE      Forex      Forex       100000
-## 14 CHFJPY         3           TRUE      Forex      Forex       100000
-## 15 GBPCHF         5           TRUE      Forex      Forex       100000
-## 16 NZDUSD         5           TRUE      Forex      Forex       100000
-## 17 AUDNZD         5           TRUE      Forex      Forex       100000
-## 18 EURCHF         5           TRUE      Forex      Forex       100000
-## 19 GBPUSD         5           TRUE      Forex      Forex       100000
-## 20 USDJPY         3           TRUE      Forex      Forex       100000
-## 21 AUDJPY         3           TRUE      Forex      Forex       100000
-## 22 EURGBP         5           TRUE      Forex      Forex       100000
-## 23 EURNOK         5           TRUE      Forex      Forex       100000
-## 24 EURSEK         5           TRUE      Forex      Forex       100000
-## 25 AUDCHF         5           TRUE      Forex      Forex       100000
-## 26 CADCHF         5           TRUE      Forex      Forex       100000
-## 27 GBPAUD         5           TRUE      Forex      Forex       100000
-## 28 GBPCAD         5           TRUE      Forex      Forex       100000
-## 29 GBPNZD         5           TRUE      Forex      Forex       100000
-## 30 NZDCAD         5           TRUE      Forex      Forex       100000
-## 31 NZDCHF         5           TRUE      Forex      Forex       100000
-## 32 NZDJPY         3           TRUE      Forex      Forex       100000
-## 33 EURNZD         5           TRUE      Forex      Forex       100000
-## 34 AUDCAD         5           TRUE      Forex      Forex       100000
-## 35 USDRUB         5           TRUE      Forex      Forex       100000
-## 36 SGDJPY         3           TRUE      Forex      Forex       100000
-## 37 EURDKK         5           TRUE      Forex      Forex       100000
-## 38 USDTRY         5           TRUE      Forex      Forex       100000
-## 39 USDHKD         5           TRUE      Forex      Forex       100000
-## 40 EURTRY         5           TRUE      Forex      Forex       100000
-## 41 USDSGD         5           TRUE      Forex      Forex       100000
-## 42 USDPLN         5           TRUE      Forex      Forex       100000
-## 43 HKDJPY         3           TRUE      Forex      Forex       100000
-## 44 GBPSGD         5           TRUE      Forex      Forex       100000
-## 45 NOKJPY         3           TRUE      Forex      Forex       100000
-## 46 EURPLN         5           TRUE      Forex      Forex       100000
-## 47 NZDSGD         5           TRUE      Forex      Forex       100000
-## 48 NOKSEK         5           TRUE      Forex      Forex       100000
-## 49 EURHKD         5           TRUE      Forex      Forex       100000
-## 50 USDMXN         5           TRUE      Forex      Forex       100000
-## 51 USDDKK         5           TRUE      Forex      Forex       100000
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/symbol&quot;</span>)</code></pre>
+<pre><code>##     Symbol Precision IsTradeAllowed   MarginMode ProfitMode ContractSize
+## 1   EURUSD         5           TRUE        Forex      Forex       100000
+## 2   GBPUSD         5           TRUE        Forex      Forex       100000
+## 3   AUDUSD         5           TRUE        Forex      Forex       100000
+## 4   USDJPY         3           TRUE        Forex      Forex       100000
+## 5   USDCAD         5           TRUE        Forex      Forex       100000
+## 6   USDCNH         4           TRUE        Forex      Forex       100000
+## 7   USDRUB         4           TRUE        Forex      Forex       100000
+## 8   NZDUSD         5           TRUE        Forex      Forex       100000
+## 9   USDCHF         5           TRUE        Forex      Forex       100000
+## 10  AUDCAD         5           TRUE        Forex      Forex       100000
+## 11  AUDCHF         5           TRUE        Forex      Forex       100000
+## 12  AUDJPY         3           TRUE        Forex      Forex       100000
+## 13  AUDNZD         5           TRUE        Forex      Forex       100000
+## 14  CADJPY         3           TRUE        Forex      Forex       100000
+## 15  CHFJPY         3           TRUE        Forex      Forex       100000
+## 16  EURAUD         5           TRUE        Forex      Forex       100000
+## 17  EURCAD         5           TRUE        Forex      Forex       100000
+## 18  EURCHF         5           TRUE        Forex      Forex       100000
+## 19  EURGBP         5           TRUE        Forex      Forex       100000
+## 20  EURJPY         3           TRUE        Forex      Forex       100000
+## 21  EURNZD         5           TRUE        Forex      Forex       100000
+## 22  GBPAUD         5           TRUE        Forex      Forex       100000
+## 23  GBPCHF         5           TRUE        Forex      Forex       100000
+## 24  GBPJPY         3           TRUE        Forex      Forex       100000
+## 25  NZDJPY         3           TRUE        Forex      Forex       100000
+## 26  USDDKK         5           TRUE        Forex      Forex       100000
+## 27  USDHKD         5           TRUE        Forex      Forex       100000
+## 28  USDMXN         5           TRUE        Forex      Forex       100000
+## 29  USDNOK         5           TRUE        Forex      Forex       100000
+## 30  USDPLN         5           TRUE        Forex      Forex       100000
+## 31  USDSEK         5           TRUE        Forex      Forex       100000
+## 32  USDSGD         5           TRUE        Forex      Forex       100000
+## 33  USDTRY         5           TRUE        Forex      Forex       100000
+## 34  EURDKK         5           TRUE        Forex      Forex       100000
+## 35  EURHKD         5           TRUE        Forex      Forex       100000
+## 36  EURNOK         5           TRUE        Forex      Forex       100000
+## 37  EURPLN         5           TRUE        Forex      Forex       100000
+## 38  EURSEK         5           TRUE        Forex      Forex       100000
+## 39  EURTRY         5           TRUE        Forex      Forex       100000
+## 40  GBPCAD         5           TRUE        Forex      Forex       100000
+## 41  GBPNZD         5           TRUE        Forex      Forex       100000
+## 42  GBPSGD         5           TRUE        Forex      Forex       100000
+## 43  CADCHF         5           TRUE        Forex      Forex       100000
+## 44  HKDJPY         3           TRUE        Forex      Forex       100000
+## 45  NOKJPY         3           TRUE        Forex      Forex       100000
+## 46  NOKSEK         5           TRUE        Forex      Forex       100000
+## 47  NZDCAD         5           TRUE        Forex      Forex       100000
+## 48  NZDCHF         5           TRUE        Forex      Forex       100000
+## 49  NZDSGD         5           TRUE        Forex      Forex       100000
+## 50  SGDJPY         3           TRUE        Forex      Forex       100000
+## 51  XAUUSD         2           TRUE CFD_Leverage        CFD          100
+## 52  XAGUSD         3           TRUE CFD_Leverage        CFD         5000
+## 53 #AUS200         1           TRUE          CFD        CFD           10
+## 54   #FCHI         1           TRUE          CFD        CFD           10
+## 55  #GDAXI         1           TRUE          CFD        CFD           25
+## 56 #GDAXIm         1           TRUE          CFD        CFD           10
+## 57  #ESX50         1           TRUE          CFD        CFD           10
+## 58  #UK100         1           TRUE          CFD        CFD           10
+## 59   #J225         0           TRUE          CFD        CFD         1000
+## 60    #NDX         1           TRUE          CFD        CFD          100
+## 61   #NDXm         1           TRUE          CFD        CFD           10
+## 62    #SPX         1           TRUE          CFD        CFD          250
+## 63   #SPXm         1           TRUE          CFD        CFD          100
+## 64   #WS30         0           TRUE          CFD        CFD           10
+## 65  #WS30m         0           TRUE          CFD        CFD            1
+## 66  XBRUSD         2           TRUE          CFD        CFD         1000
+## 67  XTIUSD         2           TRUE          CFD        CFD         1000
+## 68  XNGUSD         3           TRUE          CFD        CFD        10000
 ##    MarginHedged MarginFactor MarginCurrency MarginCurrencyPrecision
-## 1           0.5            1            EUR                       2
-## 2           0.5            1            XAG                       2
-## 3           0.5            1            EUR                       2
-## 4           0.5            1            XAU                       2
-## 5           0.5            1            USD                       2
-## 6           0.5            1            USD                       2
-## 7           0.5            1            EUR                       2
-## 8           0.5            1            CAD                       2
-## 9           0.5            1            EUR                       2
-## 10          0.5            1            GBP                       2
-## 11          0.5            1            USD                       2
-## 12          0.5            1            USD                       2
-## 13          0.5            1            AUD                       2
-## 14          0.5            1            CHF                       2
-## 15          0.5            1            GBP                       2
-## 16          0.5            1            NZD                       2
-## 17          0.5            1            AUD                       2
-## 18          0.5            1            EUR                       2
-## 19          0.5            1            GBP                       2
-## 20          0.5            1            USD                       2
-## 21          0.5            1            AUD                       2
-## 22          0.5            1            EUR                       2
-## 23          0.5            1            EUR                       2
-## 24          0.5            1            EUR                       2
-## 25          0.5            1            AUD                       2
-## 26          0.5            1            CAD                       2
-## 27          0.5            1            GBP                       2
-## 28          0.5            1            GBP                       2
-## 29          0.5            1            GBP                       2
-## 30          0.5            1            NZD                       2
-## 31          0.5            1            NZD                       2
-## 32          0.5            1            NZD                       2
-## 33          0.5            1            EUR                       2
-## 34          0.5            1            AUD                       2
-## 35          0.5            1            USD                       2
-## 36          0.5            1            SGD                       2
-## 37          0.5            1            EUR                       2
-## 38          0.5            1            USD                       2
-## 39          0.5            1            USD                       2
-## 40          0.5            1            EUR                       2
-## 41          0.5            1            USD                       2
-## 42          0.5            1            USD                       2
-## 43          0.5            1            HKD                       2
-## 44          0.5            1            GBP                       2
-## 45          0.5            1            NOK                       2
-## 46          0.5            1            EUR                       2
-## 47          0.5            1            NZD                       2
-## 48          0.5            1            NOK                       2
-## 49          0.5            1            EUR                       2
-## 50          0.5            1            USD                       2
-## 51          0.5            1            USD                       2
+## 1           0.5        1.000            EUR                       2
+## 2           0.5        1.000            GBP                       2
+## 3           0.5        1.000            AUD                       2
+## 4           0.5        1.000            USD                       2
+## 5           0.5        1.000            USD                       2
+## 6           0.5        1.000            USD                       2
+## 7           0.5        1.000            USD                       2
+## 8           0.5        1.000            NZD                       2
+## 9           0.5        1.000            USD                       2
+## 10          0.5        1.000            AUD                       2
+## 11          0.5        1.000            AUD                       2
+## 12          0.5        1.000            AUD                       2
+## 13          0.5        1.000            AUD                       2
+## 14          0.5        1.000            CAD                       2
+## 15          0.5        1.000            CHF                       2
+## 16          0.5        1.000            EUR                       2
+## 17          0.5        1.000            EUR                       2
+## 18          0.5        1.000            EUR                       2
+## 19          0.5        1.000            EUR                       2
+## 20          0.5        1.000            EUR                       2
+## 21          0.5        1.000            EUR                       2
+## 22          0.5        1.000            GBP                       2
+## 23          0.5        1.000            GBP                       2
+## 24          0.5        1.000            GBP                       2
+## 25          0.5        1.000            NZD                       2
+## 26          0.5        1.000            USD                       2
+## 27          0.5        1.000            USD                       2
+## 28          0.5        1.000            USD                       2
+## 29          0.5        1.000            USD                       2
+## 30          0.5        1.000            USD                       2
+## 31          0.5        1.000            USD                       2
+## 32          0.5        1.000            USD                       2
+## 33          0.5        1.000            USD                       2
+## 34          0.5        1.000            EUR                       2
+## 35          0.5        1.000            EUR                       2
+## 36          0.5        1.000            EUR                       2
+## 37          0.5        1.000            EUR                       2
+## 38          0.5        1.000            EUR                       2
+## 39          0.5        1.000            EUR                       2
+## 40          0.5        1.000            GBP                       2
+## 41          0.5        1.000            GBP                       2
+## 42          0.5        1.000            GBP                       2
+## 43          0.5        1.000            CAD                       2
+## 44          0.5        1.000            HKD                       2
+## 45          0.5        1.000            NOK                       2
+## 46          0.5        1.000            NOK                       2
+## 47          0.5        1.000            NZD                       2
+## 48          0.5        1.000            NZD                       2
+## 49          0.5        1.000            NZD                       2
+## 50          0.5        1.000            SGD                       2
+## 51          0.5        1.000            XAU                       2
+## 52          0.5        1.000            XAG                       2
+## 53          0.5        0.020            ASX                       2
+## 54          0.5        0.020            CAC                       2
+## 55          0.5        0.015            DAX                       2
+## 56          0.5        0.010            DA1                       2
+## 57          0.5        0.020            ESX                       2
+## 58          0.5        0.015            UKX                       2
+## 59          0.5        0.020            NKY                       2
+## 60          0.5        0.020            NDX                       2
+## 61          0.5        0.010            ND1                       2
+## 62          0.5        0.015            SPX                       2
+## 63          0.5        0.010            SP1                       2
+## 64          0.5        0.015            DJI                       2
+## 65          0.5        0.010            DJ1                       2
+## 66          0.5        0.020            XBR                       2
+## 67          0.5        0.020            XTI                       2
+## 68          0.5        0.040            XNG                       2
 ##    ProfitCurrency ProfitCurrencyPrecision
 ## 1             USD                       2
 ## 2             USD                       2
-## 3             AUD                       2
-## 4             USD                       2
+## 3             USD                       2
+## 4             JPY                       2
 ## 5             CAD                       2
-## 6             CHF                       2
-## 7             CAD                       2
-## 8             JPY                       2
-## 9             JPY                       2
-## 10            JPY                       2
-## 11            SEK                       2
-## 12            NOK                       2
-## 13            USD                       2
+## 6             CNH                       2
+## 7             RUB                       2
+## 8             USD                       2
+## 9             CHF                       2
+## 10            CAD                       2
+## 11            CHF                       2
+## 12            JPY                       2
+## 13            NZD                       2
 ## 14            JPY                       2
-## 15            CHF                       2
-## 16            USD                       2
-## 17            NZD                       2
+## 15            JPY                       2
+## 16            AUD                       2
+## 17            CAD                       2
 ## 18            CHF                       2
-## 19            USD                       2
+## 19            GBP                       2
 ## 20            JPY                       2
-## 21            JPY                       2
-## 22            GBP                       2
-## 23            NOK                       2
-## 24            SEK                       2
-## 25            CHF                       2
-## 26            CHF                       2
-## 27            AUD                       2
-## 28            CAD                       2
-## 29            NZD                       2
-## 30            CAD                       2
-## 31            CHF                       2
-## 32            JPY                       2
-## 33            NZD                       2
-## 34            CAD                       2
-## 35            RUB                       2
-## 36            JPY                       2
-## 37            DKK                       2
-## 38            TRY                       2
-## 39            HKD                       2
-## 40            TRY                       2
-## 41            SGD                       2
-## 42            PLN                       2
-## 43            JPY                       2
-## 44            SGD                       2
+## 21            NZD                       2
+## 22            AUD                       2
+## 23            CHF                       2
+## 24            JPY                       2
+## 25            JPY                       2
+## 26            DKK                       2
+## 27            HKD                       2
+## 28            MXN                       2
+## 29            NOK                       2
+## 30            PLN                       2
+## 31            SEK                       2
+## 32            SGD                       2
+## 33            TRY                       2
+## 34            DKK                       2
+## 35            HKD                       2
+## 36            NOK                       2
+## 37            PLN                       2
+## 38            SEK                       2
+## 39            TRY                       2
+## 40            CAD                       2
+## 41            NZD                       2
+## 42            SGD                       2
+## 43            CHF                       2
+## 44            JPY                       2
 ## 45            JPY                       2
-## 46            PLN                       2
-## 47            SGD                       2
-## 48            SEK                       2
-## 49            HKD                       2
-## 50            MXN                       2
-## 51            DKK                       2
+## 46            SEK                       2
+## 47            CAD                       2
+## 48            CHF                       2
+## 49            SGD                       2
+## 50            JPY                       2
+## 51            USD                       2
+## 52            USD                       2
+## 53            AUD                       2
+## 54            EUR                       2
+## 55            EUR                       2
+## 56            EUR                       2
+## 57            EUR                       2
+## 58            GBP                       2
+## 59            JPY                       2
+## 60            USD                       2
+## 61            USD                       2
+## 62            USD                       2
+## 63            USD                       2
+## 64            USD                       2
+## 65            USD                       2
+## 66            USD                       2
+## 67            USD                       2
+## 68            USD                       2
 ##                                  Description SwapEnabled SwapSizeShort
-## 1                          Euro vs US Dollar       FALSE             0
-## 2                                Silver Spot       FALSE             0
-## 3                  Euro vs Australian Dollar       FALSE             0
-## 4                                  Gold Spot       FALSE             0
-## 5               US Dollar vs Canadian Dollar       FALSE             0
-## 6                   US Dollar vs Swiss Franc       FALSE             0
-## 7                    Euro vs Canadian Dollar       FALSE             0
-## 8            Canadian Dollar vs Japanese Yen       FALSE             0
-## 9                       Euro vs Japanese Yen       FALSE             0
-## 10       Great Britain Pound vs Japanese Yen       FALSE             0
-## 11                US Dollar vs Swedish Krona       FALSE             0
-## 12              US Dollar vs Norwegian Krone       FALSE             0
-## 13            Australian Dollar vs US Dollar       FALSE             0
-## 14               Swiss Franc vs Japanese Yen       FALSE             0
-## 15        Great Britain Pound vs Swiss Franc       FALSE             0
-## 16           New Zealand Dollar vs US Dollar       FALSE             0
-## 17   Australian Dollar vs New Zealand Dollar       FALSE             0
-## 18                       Euro vs Swiss Franc       FALSE             0
-## 19          Great Britain Pound vs US Dollar       FALSE             0
-## 20                 US Dollar vs Japanese Yen       FALSE             0
-## 21         Australian Dollar vs Japanese Yen       FALSE             0
-## 22               Euro vs Great Britain Pound       FALSE             0
-## 23                   Euro vs Norwegian Krone       FALSE             0
-## 24                     Euro vs Swedish Krona       FALSE             0
-## 25          Australian Dollar vs Swiss Franc       FALSE             0
-## 26            Canadian Dollar vs Swiss Franc       FALSE             0
-## 27  Great Britain Pound vs Australian Dollar       FALSE             0
-## 28    Great Britain Pound vs Canadian Dollar       FALSE             0
-## 29 Great Britain Pound vs New Zealand Dollar       FALSE             0
-## 30     New Zealand Dollar vs Canadian Dollar       FALSE             0
-## 31         New Zealand Dollar vs Swiss Franc       FALSE             0
-## 32        New Zealand Dollar vs Japanese Yen       FALSE             0
-## 33                Euro vs New Zealand Dollar       FALSE             0
-## 34      Australian Dollar vs Canadian Dollar       FALSE             0
-## 35                US Dollar vs Russian Ruble       FALSE             0
-## 36          Singapore Dollar vs Japanese Yen       FALSE             0
-## 37                     Euro vs Danish Kronor       FALSE             0
-## 38                 US Dollar vs Turkish Lira       FALSE             0
-## 39             US Dollar vs Hong Kong Dollar       FALSE             0
-## 40                      Euro vs Turkish Lira       FALSE             0
-## 41             US Dollar vs Singapore Dollar       FALSE             0
-## 42                 US Dollar vs Polish Zloty       FALSE             0
-## 43          Hong Kong Dollar vs Japanese Yen       FALSE             0
-## 44   Great Britain Pound vs Singapore Dollar       FALSE             0
-## 45           Norwegian Krone vs Japanese Yen       FALSE             0
-## 46                      Euro vs Polish Zloty       FALSE             0
-## 47    New Zealand Dollar vs Singapore Dollar       FALSE             0
-## 48          Norwegian Krone vs Swedish Krone       FALSE             0
-## 49                  Euro vs Hong Kong Dollar       FALSE             0
-## 50                 US Dollar vs Mexican Peso       FALSE             0
-## 51                US Dollar vs Danish Kronor       FALSE             0
-##    SwapSizeLong
-## 1             0
-## 2             0
-## 3             0
-## 4             0
-## 5             0
-## 6             0
-## 7             0
-## 8             0
-## 9             0
-## 10            0
-## 11            0
-## 12            0
-## 13            0
-## 14            0
-## 15            0
-## 16            0
-## 17            0
-## 18            0
-## 19            0
-## 20            0
-## 21            0
-## 22            0
-## 23            0
-## 24            0
-## 25            0
-## 26            0
-## 27            0
-## 28            0
-## 29            0
-## 30            0
-## 31            0
-## 32            0
-## 33            0
-## 34            0
-## 35            0
-## 36            0
-## 37            0
-## 38            0
-## 39            0
-## 40            0
-## 41            0
-## 42            0
-## 43            0
-## 44            0
-## 45            0
-## 46            0
-## 47            0
-## 48            0
-## 49            0
-## 50            0
-## 51            0</code></pre>
+## 1                          Euro vs US Dollar        TRUE       0.29000
+## 2           Great Britain Pound vs US Dollar        TRUE      -3.00000
+## 3             Australian Dollar vs US Dollar        TRUE      -5.85000
+## 4                  US Dollar vs Japanese Yen        TRUE      -1.10843
+## 5               US Dollar vs Canadian Dollar        TRUE       0.45333
+## 6         US Dollar vs Chinese Offshore Yuan        TRUE       2.27950
+## 7                 US Dollar vs Russian Ruble        TRUE      97.46667
+## 8            New Zealand Dollar vs US Dollar        TRUE      -7.35000
+## 9                   US Dollar vs Swiss Franc        TRUE      -3.88889
+## 10      Australian Dollar vs Canadian Dollar        TRUE      -6.37333
+## 11          Australian Dollar vs Swiss Franc        TRUE      -8.19231
+## 12         Australian Dollar vs Japanese Yen        TRUE      -7.40964
+## 13   Australian Dollar vs New Zealand Dollar        TRUE       0.55385
+## 14           Canadian Dollar vs Japanese Yen        TRUE      -2.20482
+## 15               Swiss Franc vs Japanese Yen        TRUE       1.16867
+## 16                 Euro vs Australian Dollar        TRUE       4.25000
+## 17                   Euro vs Canadian Dollar        TRUE       1.14667
+## 18                       Euro vs Swiss Franc        TRUE      -3.19231
+## 19               Euro vs Great Britain Pound        TRUE       0.53896
+## 20                      Euro vs Japanese Yen        TRUE       0.16867
+## 21                Euro vs New Zealand Dollar        TRUE       6.04615
+## 22  Great Britain Pound vs Australian Dollar        TRUE       3.87500
+## 23        Great Britain Pound vs Swiss Franc        TRUE      -8.41346
+## 24       Great Britain Pound vs Japanese Yen        TRUE      -4.37349
+## 25        New Zealand Dollar vs Japanese Yen        TRUE      -9.15663
+## 26                US Dollar vs Danish Kronor        TRUE      -5.73333
+## 27             US Dollar vs Hong Kong Dollar        TRUE     -21.10000
+## 28                 US Dollar vs Mexican Peso        TRUE      56.33333
+## 29              US Dollar vs Norwegian Krone        TRUE       9.25000
+## 30                 US Dollar vs Polish Zloty        TRUE       6.59259
+## 31                US Dollar vs Swedish Krona        TRUE     -21.00000
+## 32             US Dollar vs Singapore Dollar        TRUE       0.07042
+## 33                 US Dollar vs Turkish Lira        TRUE      42.94118
+## 34                     Euro vs Danish Kronor        TRUE       1.13333
+## 35                  Euro vs Hong Kong Dollar        TRUE       1.38462
+## 36                   Euro vs Norwegian Krone        TRUE      14.41667
+## 37                      Euro vs Polish Zloty        TRUE       9.22222
+## 38                     Euro vs Swedish Krona        TRUE     -11.50000
+## 39                      Euro vs Turkish Lira        TRUE      49.76471
+## 40    Great Britain Pound vs Canadian Dollar        TRUE      -0.89333
+## 41 Great Britain Pound vs New Zealand Dollar        TRUE       6.15385
+## 42   Great Britain Pound vs Singapore Dollar        TRUE      -2.74648
+## 43            Canadian Dollar vs Swiss Franc        TRUE      -4.17308
+## 44          Hong Kong Dollar vs Japanese Yen        TRUE      -0.09639
+## 45           Norwegian Krone vs Japanese Yen        TRUE      -0.74699
+## 46          Norwegian Krone vs Swedish Krone        TRUE      -6.75000
+## 47     New Zealand Dollar vs Canadian Dollar        TRUE      -8.48000
+## 48         New Zealand Dollar vs Swiss Franc        TRUE      -9.37500
+## 49    New Zealand Dollar vs Singapore Dollar        TRUE      -9.71831
+## 50          Singapore Dollar vs Japanese Yen        TRUE      -1.37349
+## 51                                 Gold Spot        TRUE      -3.00000
+## 52                               Silver Spot        TRUE      -0.10000
+## 53                       Australia 200 Index        TRUE       1.37000
+## 54                           France 40 Index        TRUE       0.00000
+## 55                          Germany 30 Index        TRUE       0.00000
+## 56                   Germany 30 (Mini) Index        TRUE       0.00000
+## 57                           Europe 50 Index        TRUE       0.00000
+## 58                              UK 100 Index        TRUE       0.00000
+## 59                            Japan 25 Index        TRUE       0.00000
+## 60                         US Tech 100 Index        TRUE       0.00000
+## 61                  US Tech 100 (Mini) Index        TRUE       0.00000
+## 62                          US SPX 500 Index        TRUE       0.00000
+## 63                   US SPX 500 (Mini) Index        TRUE       0.00000
+## 64                      Wall Street 50 Index        TRUE       0.00000
+## 65               Wall Street 50 (Mini) Index        TRUE       0.00000
+## 66                           UK Brent (Spot)        TRUE       2.52000
+## 67                           US Crude (Spot)        TRUE       2.48000
+## 68                     US Natural Gas (Spot)        TRUE       2.90000
+##    SwapSizeLong MinTradeAmount MaxTradeAmount TradeAmountStep
+## 1      -2.02000         1000.0      100000000          1000.0
+## 2       0.48000         1000.0      100000000          1000.0
+## 3       1.63000         1000.0      100000000          1000.0
+## 4      -0.12048         1000.0      100000000          1000.0
+## 5      -2.70667         1000.0      100000000          1000.0
+## 6      -6.32298         1000.0      100000000          1000.0
+## 7    -318.20000         1000.0      100000000          1000.0
+## 8       1.98000         1000.0      100000000          1000.0
+## 9       0.98148         1000.0      100000000          1000.0
+## 10      1.69333         1000.0      100000000          1000.0
+## 11      2.42308         1000.0      100000000          1000.0
+## 12      2.09639         1000.0      100000000          1000.0
+## 13     -4.38462         1000.0      100000000          1000.0
+## 14      0.43373         1000.0      100000000          1000.0
+## 15     -4.80723         1000.0      100000000          1000.0
+## 16    -14.80556         1000.0      100000000          1000.0
+## 17     -4.96000         1000.0      100000000          1000.0
+## 18      0.70192         1000.0      100000000          1000.0
+## 19     -2.35714         1000.0      100000000          1000.0
+## 20     -1.87952         1000.0      100000000          1000.0
+## 21    -21.87692         1000.0      100000000          1000.0
+## 22    -14.45833         1000.0      100000000          1000.0
+## 23      2.29808         1000.0      100000000          1000.0
+## 24      0.81928         1000.0      100000000          1000.0
+## 25      2.49398         1000.0      100000000          1000.0
+## 26     -1.20000         1000.0      100000000          1000.0
+## 27    -31.10000         1000.0      100000000          1000.0
+## 28   -205.00000         1000.0      100000000          1000.0
+## 29    -38.75000         1000.0      100000000          1000.0
+## 30    -25.33333         1000.0      100000000          1000.0
+## 31      4.16667         1000.0      100000000          1000.0
+## 32     -1.69014         1000.0      100000000          1000.0
+## 33   -136.76470         1000.0      100000000          1000.0
+## 34    -10.86667         1000.0      100000000          1000.0
+## 35    -13.00000         1000.0      100000000          1000.0
+## 36    -55.75000         1000.0      100000000          1000.0
+## 37    -33.85185         1000.0      100000000          1000.0
+## 38      0.66667         1000.0      100000000          1000.0
+## 39   -158.20590         1000.0      100000000          1000.0
+## 40     -1.20000         1000.0      100000000          1000.0
+## 41    -23.53846         1000.0      100000000          1000.0
+## 42      0.16901         1000.0      100000000          1000.0
+## 43      1.14423         1000.0      100000000          1000.0
+## 44     -0.04819         1000.0      100000000          1000.0
+## 45      0.18072         1000.0      100000000          1000.0
+## 46      1.83333         1000.0      100000000          1000.0
+## 47      2.21333         1000.0      100000000          1000.0
+## 48      2.67308         1000.0      100000000          1000.0
+## 49      2.59155         1000.0      100000000          1000.0
+## 50      0.16867         1000.0      100000000          1000.0
+## 51     -3.60000            1.0         100000             1.0
+## 52     -1.10000           50.0        5000000            50.0
+## 53     -4.32000            1.0          10000             1.0
+## 54     -1.35000            1.0          10000             1.0
+## 55     -2.99000            2.5          25000             2.5
+## 56     -2.99000            1.0          10000             1.0
+## 57     -0.95000            1.0          10000             1.0
+## 58     -2.67000            1.0          10000             1.0
+## 59     -0.55600          100.0        1000000           100.0
+## 60     -1.47000           10.0         100000            10.0
+## 61     -1.47000            1.0          10000             1.0
+## 62     -0.68000           25.0         250000            25.0
+## 63     -0.68000           10.0         100000            10.0
+## 64     -0.57000            1.0          10000             1.0
+## 65     -0.57000            0.1           1000             0.1
+## 66     -5.20000           10.0        1000000            10.0
+## 67     -4.88000           10.0        1000000            10.0
+## 68     -4.80000         1000.0       10000000          1000.0
+##    CommissionType CommissionChargeType CommissionChargeMethod Commission
+## 1      Percentage               PerLot              RoundTurn      0.005
+## 2      Percentage               PerLot              RoundTurn      0.005
+## 3      Percentage               PerLot              RoundTurn      0.005
+## 4      Percentage               PerLot              RoundTurn      0.005
+## 5      Percentage               PerLot              RoundTurn      0.005
+## 6      Percentage               PerLot              RoundTurn      0.005
+## 7      Percentage               PerLot              RoundTurn      0.005
+## 8      Percentage               PerLot              RoundTurn      0.005
+## 9      Percentage               PerLot              RoundTurn      0.005
+## 10     Percentage               PerLot              RoundTurn      0.005
+## 11     Percentage               PerLot              RoundTurn      0.005
+## 12     Percentage               PerLot              RoundTurn      0.005
+## 13     Percentage               PerLot              RoundTurn      0.005
+## 14     Percentage               PerLot              RoundTurn      0.005
+## 15     Percentage               PerLot              RoundTurn      0.005
+## 16     Percentage               PerLot              RoundTurn      0.005
+## 17     Percentage               PerLot              RoundTurn      0.005
+## 18     Percentage               PerLot              RoundTurn      0.005
+## 19     Percentage               PerLot              RoundTurn      0.005
+## 20     Percentage               PerLot              RoundTurn      0.005
+## 21     Percentage               PerLot              RoundTurn      0.005
+## 22     Percentage               PerLot              RoundTurn      0.005
+## 23     Percentage               PerLot              RoundTurn      0.005
+## 24     Percentage               PerLot              RoundTurn      0.005
+## 25     Percentage               PerLot              RoundTurn      0.005
+## 26     Percentage               PerLot              RoundTurn      0.005
+## 27     Percentage               PerLot              RoundTurn      0.005
+## 28     Percentage               PerLot              RoundTurn      0.005
+## 29     Percentage               PerLot              RoundTurn      0.005
+## 30     Percentage               PerLot              RoundTurn      0.005
+## 31     Percentage               PerLot              RoundTurn      0.005
+## 32     Percentage               PerLot              RoundTurn      0.005
+## 33     Percentage               PerLot              RoundTurn      0.005
+## 34     Percentage               PerLot              RoundTurn      0.005
+## 35     Percentage               PerLot              RoundTurn      0.005
+## 36     Percentage               PerLot              RoundTurn      0.005
+## 37     Percentage               PerLot              RoundTurn      0.005
+## 38     Percentage               PerLot              RoundTurn      0.005
+## 39     Percentage               PerLot              RoundTurn      0.005
+## 40     Percentage               PerLot              RoundTurn      0.005
+## 41     Percentage               PerLot              RoundTurn      0.005
+## 42     Percentage               PerLot              RoundTurn      0.005
+## 43     Percentage               PerLot              RoundTurn      0.005
+## 44     Percentage               PerLot              RoundTurn      0.005
+## 45     Percentage               PerLot              RoundTurn      0.005
+## 46     Percentage               PerLot              RoundTurn      0.005
+## 47     Percentage               PerLot              RoundTurn      0.005
+## 48     Percentage               PerLot              RoundTurn      0.005
+## 49     Percentage               PerLot              RoundTurn      0.005
+## 50     Percentage               PerLot              RoundTurn      0.005
+## 51     Percentage               PerLot              RoundTurn      0.005
+## 52     Percentage               PerLot              RoundTurn      0.005
+## 53          Money               PerLot              RoundTurn      8.000
+## 54          Money               PerLot              RoundTurn      8.000
+## 55          Money               PerLot              RoundTurn      8.000
+## 56          Money               PerLot              RoundTurn      8.000
+## 57          Money               PerLot              RoundTurn      8.000
+## 58          Money               PerLot              RoundTurn      8.000
+## 59          Money               PerLot              RoundTurn      8.000
+## 60          Money               PerLot              RoundTurn      8.000
+## 61          Money               PerLot              RoundTurn      8.000
+## 62          Money               PerLot              RoundTurn      8.000
+## 63          Money               PerLot              RoundTurn      8.000
+## 64          Money               PerLot              RoundTurn      8.000
+## 65          Money               PerLot              RoundTurn      8.000
+## 66     Percentage               PerLot              RoundTurn      0.005
+## 67     Percentage               PerLot              RoundTurn      0.005
+## 68     Percentage               PerLot              RoundTurn      0.005
+##    LimitsCommission
+## 1             0.005
+## 2             0.005
+## 3             0.005
+## 4             0.005
+## 5             0.005
+## 6             0.005
+## 7             0.005
+## 8             0.005
+## 9             0.005
+## 10            0.005
+## 11            0.005
+## 12            0.005
+## 13            0.005
+## 14            0.005
+## 15            0.005
+## 16            0.005
+## 17            0.005
+## 18            0.005
+## 19            0.005
+## 20            0.005
+## 21            0.005
+## 22            0.005
+## 23            0.005
+## 24            0.005
+## 25            0.005
+## 26            0.005
+## 27            0.005
+## 28            0.005
+## 29            0.005
+## 30            0.005
+## 31            0.005
+## 32            0.005
+## 33            0.005
+## 34            0.005
+## 35            0.005
+## 36            0.005
+## 37            0.005
+## 38            0.005
+## 39            0.005
+## 40            0.005
+## 41            0.005
+## 42            0.005
+## 43            0.005
+## 44            0.005
+## 45            0.005
+## 46            0.005
+## 47            0.005
+## 48            0.005
+## 49            0.005
+## 50            0.005
+## 51            0.005
+## 52            0.005
+## 53            8.000
+## 54            8.000
+## 55            8.000
+## 56            8.000
+## 57            8.000
+## 58            8.000
+## 59            8.000
+## 60            8.000
+## 61            8.000
+## 62            8.000
+## 63            8.000
+## 64            8.000
+## 65            8.000
+## 66            0.005
+## 67            0.005
+## 68            0.005</code></pre>
 </div>
 <div id="get-symbol-properties" class="slide section level2">
 <h1>Get symbol properties</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol/EURUSD&quot;</span>))</code></pre>
-<pre><code>## List of 16
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/symbol/EURUSD&quot;</span>))</code></pre>
+<pre><code>## List of 24
 ##  $ Symbol                 : chr &quot;EURUSD&quot;
 ##  $ Precision              : int 5
-##  $ TradeIsAllowed         : logi TRUE
+##  $ IsTradeAllowed         : logi TRUE
 ##  $ MarginMode             : chr &quot;Forex&quot;
 ##  $ ProfitMode             : chr &quot;Forex&quot;
 ##  $ ContractSize           : int 100000
@@ -361,487 +601,631 @@ Andrei Pazniak
 ##  $ ProfitCurrency         : chr &quot;USD&quot;
 ##  $ ProfitCurrencyPrecision: int 2
 ##  $ Description            : chr &quot;Euro vs US Dollar&quot;
-##  $ SwapEnabled            : logi FALSE
-##  $ SwapSizeShort          : int 0
-##  $ SwapSizeLong           : int 0</code></pre>
+##  $ SwapEnabled            : logi TRUE
+##  $ SwapSizeShort          : num 0.29
+##  $ SwapSizeLong           : num -2.02
+##  $ MinTradeAmount         : num 1000
+##  $ MaxTradeAmount         : int 100000000
+##  $ TradeAmountStep        : num 1000
+##  $ CommissionType         : chr &quot;Percentage&quot;
+##  $ CommissionChargeType   : chr &quot;PerLot&quot;
+##  $ CommissionChargeMethod : chr &quot;RoundTurn&quot;
+##  $ Commission             : num 0.005
+##  $ LimitsCommission       : num 0.005</code></pre>
 </div>
 <div id="get-ticks-for-all-symbols" class="slide section level2">
 <h1>Get ticks for all symbols</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/tick&quot;</span>))</code></pre>
-<pre><code>## 'data.frame':    51 obs. of  4 variables:
-##  $ Symbol   : chr  &quot;EURUSD&quot; &quot;XAGUSD&quot; &quot;EURAUD&quot; &quot;XAUUSD&quot; ...
-##  $ Timestamp: num  1.43e+12 1.43e+12 1.43e+12 1.43e+12 1.43e+12 ...
-##  $ BestBid  :'data.frame':   51 obs. of  3 variables:
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/tick&quot;</span>))</code></pre>
+<pre><code>## 'data.frame':    68 obs. of  4 variables:
+##  $ Symbol   : chr  &quot;EURUSD&quot; &quot;GBPUSD&quot; &quot;AUDUSD&quot; &quot;USDJPY&quot; ...
+##  $ Timestamp: num  1.44e+12 1.44e+12 1.44e+12 1.44e+12 1.44e+12 ...
+##  $ BestBid  :'data.frame':   68 obs. of  3 variables:
 ##   ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   ..$ Price : num  1.12 16.68 1.4 1193.96 1.2 ...
-##   ..$ Volume: int  1000000 25000 500000 100 3000000 1500000 1000000 400000 1250000 1400000 ...
-##  $ BestAsk  :'data.frame':   51 obs. of  3 variables:
+##   ..$ Price : num  1.123 1.519 0.698 119.886 1.341 ...
+##   ..$ Volume: num  439000 164000 343000 19000 50000 1500000 500000 250000 2000000 912000 ...
+##  $ BestAsk  :'data.frame':   68 obs. of  3 variables:
 ##   ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   ..$ Price : num  1.12 16.7 1.4 1194.25 1.2 ...
-##   ..$ Volume: int  900000 5000 471000 100 1000000 10000 3000000 90000 1910000 1000000 ...</code></pre>
+##   ..$ Price : num  1.123 1.519 0.698 119.887 1.341 ...
+##   ..$ Volume: int  3550000 15000 1300000 258000 250000 1000000 5000 2250000 500000 250000 ...</code></pre>
 </div>
 <div id="get-best-bidask-for-symbol" class="slide section level2">
 <h1>Get best bid/ask for symbol</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/tick/EURUSD&quot;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/tick/EURUSD&quot;</span>))</code></pre>
 <pre><code>## List of 4
 ##  $ Symbol   : chr &quot;EURUSD&quot;
-##  $ Timestamp: num 1.43e+12
+##  $ Timestamp: num 1.44e+12
 ##  $ BestBid  :List of 3
 ##   ..$ Type  : chr &quot;Bid&quot;
 ##   ..$ Price : num 1.12
-##   ..$ Volume: int 1500000
+##   ..$ Volume: int 1939000
 ##  $ BestAsk  :List of 3
 ##   ..$ Type  : chr &quot;Ask&quot;
 ##   ..$ Price : num 1.12
-##   ..$ Volume: int 2000000</code></pre>
+##   ..$ Volume: int 50000</code></pre>
 </div>
 <div id="get-level2-for-all-symbols" class="slide section level2">
 <h1>Get Level2 for all symbols</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/level2&quot;</span>))</code></pre>
-<pre><code>## 'data.frame':    51 obs. of  6 variables:
-##  $ Symbol   : chr  &quot;EURUSD&quot; &quot;XAGUSD&quot; &quot;EURAUD&quot; &quot;XAUUSD&quot; ...
-##  $ Timestamp: num  1.43e+12 1.43e+12 1.43e+12 1.43e+12 1.43e+12 ...
-##  $ BestBid  :'data.frame':   51 obs. of  3 variables:
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/level2&quot;</span>))</code></pre>
+<pre><code>## 'data.frame':    68 obs. of  6 variables:
+##  $ Symbol   : chr  &quot;EURUSD&quot; &quot;GBPUSD&quot; &quot;AUDUSD&quot; &quot;USDJPY&quot; ...
+##  $ Timestamp: num  1.44e+12 1.44e+12 1.44e+12 1.44e+12 1.44e+12 ...
+##  $ BestBid  :'data.frame':   68 obs. of  3 variables:
 ##   ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   ..$ Price : num  1.12 16.68 1.4 1193.96 1.2 ...
-##   ..$ Volume: int  1500000 25000 500000 100 3000000 1500000 671000 400000 250000 1400000 ...
-##  $ BestAsk  :'data.frame':   51 obs. of  3 variables:
+##   ..$ Price : num  1.123 1.519 0.698 119.886 1.341 ...
+##   ..$ Volume: num  1939000 164000 343000 19000 50000 ...
+##  $ BestAsk  :'data.frame':   68 obs. of  3 variables:
 ##   ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   ..$ Price : num  1.12 16.7 1.4 1194.25 1.2 ...
-##   ..$ Volume: int  2000000 5000 471000 100 1000000 10000 2000000 90000 1000000 1417000 ...
-##  $ Bids     :List of 51
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   ..$ Price : num  1.123 1.519 0.698 119.887 1.341 ...
+##   ..$ Volume: int  50000 15000 1300000 258000 250000 1000000 5000 2250000 500000 250000 ...
+##  $ Bids     :List of 68
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.12 1.12 1.12 1.12 1.12
-##   .. ..$ Volume: int  28000 10000 7500000 9000000 1500000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  16.7 16.7 16.7
-##   .. ..$ Volume: int  5000 45000 25000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.12 1.12 1.12 1.12 1.12 ...
+##   .. ..$ Volume: int  1939000 3500000 5000000 10000 1000 10000 5000 4000 12000 8000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.4 1.4 1.4 1.4 1.4
-##   .. ..$ Volume: int  449000 2071000 3000000 500000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.52 1.52 1.52 1.52 1.52 ...
+##   .. ..$ Volume: int  164000 2750000 750000 3000 24000 10000 6000 1000 4000 2000 ...
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1194 1194 1194 1194 1194
-##   .. ..$ Volume: int  2 950 292 600 100
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.698 0.698 0.698 0.698 0.698 ...
+##   .. ..$ Volume: int  343000 500000 3050000 2000000 10000 3000 10000 10000 1000 1000 ...
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.2 1.2 1.2 1.2 1.2
-##   .. ..$ Volume: int  2000 10000 2250000 1000000 3000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  120 120 120 120 120 ...
+##   .. ..$ Volume: int  19000 981000 50000 1000000 100000 5000 2000 2000 20000 1000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.922 0.924 0.928 0.928 0.928
-##   .. ..$ Volume: int  20000 20000 2000000 1500000 1500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.34 1.34 1.34 1.34 1.34 ...
+##   .. ..$ Volume: int  50000 500000 1260000 10000 1000 2000 1000 12000 11000 10000 ...
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 6.34
+##   .. ..$ Volume: int 1500000
+##   ..$ :'data.frame': 6 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.32 1.33 1.34 1.34 1.34
-##   .. ..$ Volume: int  240000 20000 2500000 1000000 671000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  66.1 66.1 66.1 65.8 65.6 ...
+##   .. ..$ Volume: int  500000 500000 2000000 2000 2000 49000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  99.7 99.8 100 100 100
-##   .. ..$ Volume: int  2000 20000 1250000 1100000 400000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.635 0.635 0.635 0.634 0.633 ...
+##   .. ..$ Volume: int  250000 755000 1250000 3000 3000 4000 1000 8000 50000 2000 ...
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  134 134 134 134 134
-##   .. ..$ Volume: int  100000 57000 400000 500000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.972 0.972 0.972 0.972 0.972 ...
+##   .. ..$ Volume: int  1000000 2000000 1000000 457000 1000 3000 15000 10000 10000 2000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  187 187 188 188 188
-##   .. ..$ Volume: int  10000 2000 2000000 1000000 1400000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.936 0.936 0.936 0.935 0.935 ...
+##   .. ..$ Volume: int  912000 1500000 550000 24000 10000 12000 1000 5000 36000 12000 ...
+##   ..$ :'data.frame': 11 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  8.29 8.29 8.29 8.29 8.29
-##   .. ..$ Volume: int  1000000 1000 1000000 1000000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.679 0.679 0.679 0.679 0.677 ...
+##   .. ..$ Volume: int  1000000 500000 500000 1500000 1000 10000 1000 2000 1000 2000 ...
+##   ..$ :'data.frame': 9 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  7.43 7.45 7.45 7.45 7.45
-##   .. ..$ Volume: int  80000 1000000 1000000 46000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  83.7 83.7 83.7 83.7 83.5 ...
+##   .. ..$ Volume: int  63000 550000 500000 1750000 10000 1000 2000 5000 10000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.8 0.801 0.802 0.802 0.802
-##   .. ..$ Volume: int  2000 46000 3500000 1500000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.1 1.1 1.1 1.1 1.1 ...
+##   .. ..$ Volume: int  95000 2000000 1000000 2000000 2000 1000 94000 10000 4000 3000 ...
+##   ..$ :'data.frame': 6 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  126 129 129 129 129
-##   .. ..$ Volume: int  200000 1000000 700000 400000 92000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  1.45 1.45 1.45
-##   .. ..$ Volume: int  1000000 500000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  89.4 89.4 89.4 88.6 88.4 ...
+##   .. ..$ Volume: int  500000 1000000 2550000 10000 2000 5000
+##   ..$ :'data.frame': 7 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.741 0.742 0.743 0.743 0.743
-##   .. ..$ Volume: int  2000 18000 3500000 8250000 900000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  123 123 123 123 120 ...
+##   .. ..$ Volume: int  1000000 1037000 500000 10000 4000 1000 32000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.08 1.08 1.08 1.08 1.08
-##   .. ..$ Volume: int  3100000 2000000 500000 650000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.61 1.61 1.61 1.61 1.61 ...
+##   .. ..$ Volume: int  250000 2000000 3250000 1000000 4000 10000 12000 12000 10000 2000 ...
+##   ..$ :'data.frame': 8 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.04 1.04 1.04 1.04 1.04
-##   .. ..$ Volume: int  20000 2000 500000 500000 509000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.51 1.51 1.51 1.5 1.5 ...
+##   .. ..$ Volume: int  2063000 3250000 4000000 10000 2000 100000 46000 4000
+##   ..$ :'data.frame': 8 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.57 1.57 1.57 1.57 1.57
-##   .. ..$ Volume: int  15000 4000 1000000 900000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.09 1.09 1.09 1.09 1.09 ...
+##   .. ..$ Volume: int  1353000 2000000 1000000 4000 270000 10000 8840000 8810000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  120 120 120 120 120
-##   .. ..$ Volume: int  293000 2200000 3750000 990000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  0.739 0.739 0.739 0.739 0.739 ...
+##   .. ..$ Volume: int  14000 1500000 7050000 4250000 9000 3000 6000 10000 1000 2000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  95.9 95.9 96.1 96.1 96.1
-##   .. ..$ Volume: int  60000 2000 500000 250000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  135 135 135 135 135 ...
+##   .. ..$ Volume: int  1250000 1800000 1750000 3992000 1000 2000 10000 2000 10000 2000 ...
+##   ..$ :'data.frame': 9 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.713 0.714 0.716 0.717 0.717
-##   .. ..$ Volume: int  20000 40000 1000000 1000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.77 1.77 1.77 1.77 1.76 ...
+##   .. ..$ Volume: int  249000 500000 500000 250000 20000 10000 1000 5000 1000
+##   ..$ :'data.frame': 10 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  8.36 8.36 8.36 8.36 8.36
-##   .. ..$ Volume: int  128000 1000000 2000000 1000000 117000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  2.18 2.18 2.18 2.18 2.18 ...
+##   .. ..$ Volume: int  250000 250000 500000 939000 1000000 5000 5000 1000 2000 5000
+##   ..$ :'data.frame': 6 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  9.31 9.31 9.31 9.31 9.31
-##   .. ..$ Volume: int  1000000 1000000 873000 1000 2000000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  0.744 0.744 0.744
-##   .. ..$ Volume: int  1500000 500000 1500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  1.48 1.48 1.48 1.47 1.42 ...
+##   .. ..$ Volume: int  1000000 1000000 1000000 10000 2000 1000
+##   ..$ :'data.frame': 12 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.775 0.775 0.775 0.775 0.775
-##   .. ..$ Volume: int  3000 3500000 1506000 1000000 1000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  182 182 182 182 182 ...
+##   .. ..$ Volume: int  504000 50000 1000000 2000 4000 1000 1000 1000 2000 6000 ...
+##   ..$ :'data.frame': 10 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.95 1.95 1.95 1.95 1.95
-##   .. ..$ Volume: int  1000000 520000 1000000 500000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.88 1.88 1.88 1.88 1.88
-##   .. ..$ Volume: int  173000 1000000 500000 500000 36000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  2.11 2.11 2.11
-##   .. ..$ Volume: int  2000000 250000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.886 0.889 0.89 0.89 0.89
-##   .. ..$ Volume: int  10000 10000 1000000 2000000 1000000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  0.69 0.69 0.69 0.69
-##   .. ..$ Volume: int  1500000 500000 1000000 253000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  89.1 89.1 89.1 89.1 89.1
-##   .. ..$ Volume: int  4000 1000000 400000 1000 100000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.51 1.51 1.51 1.51 1.51
-##   .. ..$ Volume: int  10000 10000 250000 1250000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  0.958 0.961 0.961 0.961 0.961
-##   .. ..$ Volume: int  200000 40000 500000 250000 263000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  44.1 44.3 49.6 49.6 49.6
-##   .. ..$ Volume: int  20000 20000 500000 1000000 1000000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  90 90 90
-##   .. ..$ Volume: int  2000000 1000000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  7.46 7.46 7.46 7.46 7.46
-##   .. ..$ Volume: int  5000 5000 1000000 1000 1000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  2.59 2.65 2.65 2.65
-##   .. ..$ Volume: int  40000 1000000 2000000 3000000
+##   .. ..$ Price : num  76.1 76.1 76.1 75.8 75.8 ...
+##   .. ..$ Volume: int  500000 500000 291000 7000 9000 1000 11000 11000 2000 10000
 ##   ..$ :'data.frame': 2 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  7.75 7.75
-##   .. ..$ Volume: int  49000 15000
+##   .. ..$ Price : num  6.64 6.64
+##   .. ..$ Volume: int  500000 1000000
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 7.75
+##   .. ..$ Volume: int 1172000
+##   ..$ :'data.frame': 6 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  17 17 17 16.5 16.5 ...
+##   .. ..$ Volume: int  1000000 1000000 1000000 74000 232000 10000
+##   ..$ :'data.frame': 7 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  8.48 8.48 8.48 8.48 8.48 ...
+##   .. ..$ Volume: int  2000 14000 1000 1986000 1000000 20000 2000
 ##   ..$ :'data.frame': 4 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  2.97 2.97 2.97 2.97
-##   .. ..$ Volume: int  1000000 1000000 1000000 143000
+##   .. ..$ Price : num  3.78 3.78 3.78 3.78
+##   .. ..$ Volume: int  250000 250000 250000 1000
 ##   ..$ :'data.frame': 5 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  1.33 1.33 1.33 1.33 1.33
-##   .. ..$ Volume: int  49000 1000000 1500000 500000 28000
+##   .. ..$ Price : num  8.41327 8.41302 8.41282 8.41255 0.00002
+##   .. ..$ Volume: int  1000000 1000000 1000000 283000 2000
+##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  1.43 1.43 1.43 1.43 1.39
+##   .. ..$ Volume: int  1000000 518000 1000000 1000000 2000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  3.04 3.04 3.04
+##   .. ..$ Volume: int  1000000 1000000 1000000
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  7.46 7.46
+##   .. ..$ Volume: int  1001000 500000
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  8.7 8.7
+##   .. ..$ Volume: int  900000 1900000
 ##   ..$ :'data.frame': 4 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  3.63 3.63 3.63 3.63
-##   .. ..$ Volume: int  250000 3000000 370000 1000000
+##   .. ..$ Price : num  9.52 9.52 9.52 9.52
+##   .. ..$ Volume: int  316000 684000 1000000 1000000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  4.24 4.24 4.24
+##   .. ..$ Volume: int  250000 250000 250000
+##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  9.45 9.45 9.45 9.45 9.45
+##   .. ..$ Volume: int  331000 10000 669000 1000000 35000
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  3.42 3.42 3.42 3.42
+##   .. ..$ Volume: int  900000 500000 500000 4000
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  2.04 2.04 2.04 2.03 2.03 ...
+##   .. ..$ Volume: int  250000 300000 2042000 11000 12000 22000 12000 13000 2000 11000 ...
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  2.39 2.39 2.39 2.39 2.39 ...
+##   .. ..$ Volume: int  47000 2000000 250000 2250000 2000 2000 1000 2000
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  2.17 2.17 2.17 1.87
+##   .. ..$ Volume: int  1000000 1000000 1000000 2000
+##   ..$ :'data.frame': 10 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  0.725 0.725 0.725 0.724 0.724 ...
+##   .. ..$ Volume: int  1000000 1000000 50000 1000 10000 3000 1000 1000 4000 2000
 ##   ..$ :'data.frame': 2 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
 ##   .. ..$ Price : num  15.5 15.5
-##   .. ..$ Volume: int  11850000 5000000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  2.09 2.09 2.09 2.09
-##   .. ..$ Volume: int  1000000 1000000 1000000 20000
-##   ..$ :'data.frame': 2 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  16.1 16.1
-##   .. ..$ Volume: int  1000 16000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  4.08 4.08 4.08 4.08 4.08
-##   .. ..$ Volume: int  1000000 3000000 1000000 7000 2000
-##   ..$ :'data.frame': 2 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  0.99 0.99
-##   .. ..$ Volume: int  80000 1024000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  1.11 1.11 1.11
-##   .. ..$ Volume: int  8000000 5000 2000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
-##   .. ..$ Price : num  8.72 8.72 8.72 8.72
-##   .. ..$ Volume: int  500000 1000000 1498000 2000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   .. ..$ Price : num  15.3 15.3 15.3 15.3 15.3
-##   .. ..$ Volume: int  58000 666000 1000000 1000000 1000000
+##   .. ..$ Volume: int  1000000 350000
 ##   ..$ :'data.frame': 1 obs. of  3 variables:
 ##   .. ..$ Type  : chr &quot;Bid&quot;
-##   .. ..$ Price : num 6.65
+##   .. ..$ Price : num 14.1
+##   .. ..$ Volume: int 11000000
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  0.992 0.991
+##   .. ..$ Volume: int  1000000 1000000
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  0.852 0.852 0.852 0.85 0.849 ...
+##   .. ..$ Volume: int  250000 250000 500000 1000 24000 3000 100000 7000 11000 11000 ...
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  0.617 0.617 0.617 0.617 0.617 ...
+##   .. ..$ Volume: int  225000 1000000 2000000 1000000 10000 1000 240000 3000 5000 10000 ...
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  0.907 0.904
+##   .. ..$ Volume: int  500000 12000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  84 84 83.9
+##   .. ..$ Volume: int  1000000 1000000 1000000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  1127 1127 1127 1127 1126 ...
+##   .. ..$ Volume: int  5 495 500 600 1 6400 21 2 11 2 ...
+##   ..$ :'data.frame': 6 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : num  14.6 14.6 14.6 14.3 13.8 ...
+##   .. ..$ Volume: int  5000 5000 20000 200 200 300
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 4931
+##   .. ..$ Volume: int 49
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 4364
+##   .. ..$ Volume: int 70
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  9513 9340
+##   .. ..$ Volume: num  112 10
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  9513 9100
+##   .. ..$ Volume: int  25 2
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 3046
+##   .. ..$ Volume: int 100
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 5932
+##   .. ..$ Volume: int 20
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : int 17164
+##   .. ..$ Volume: int 7300
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 4128
+##   .. ..$ Volume: int 180
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  4128 4110
+##   .. ..$ Volume: int  20 2
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 1890
+##   .. ..$ Volume: int 2000
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 1890
+##   .. ..$ Volume: int 200
+##   ..$ :'data.frame': 6 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   .. ..$ Price : int  16063 16021 15884 15324 15248 15245
+##   .. ..$ Volume: int  20 10 1 1 1 2
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : int 16064
+##   .. ..$ Volume: int 5
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  48.1 35.7 33.3 30.3
+##   .. ..$ Volume: int  5000 20 20 20
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot;
+##   .. ..$ Price : num  45 44 43 38.2
+##   .. ..$ Volume: int  5000 20 2400 600
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Bid&quot;
+##   .. ..$ Price : num 2.68
+##   .. ..$ Volume: int 50000
+##  $ Asks     :List of 68
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.12 1.12 1.12 1.12 1.12 ...
+##   .. ..$ Volume: int  50000 3500000 9000000 9000 1000 12000 12000 12000 10000 2000 ...
+##   ..$ :'data.frame': 14 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.52 1.52 1.52 1.52 1.52 ...
+##   .. ..$ Volume: int  15000 2235000 2250000 3000000 10000 1000 4000 12000 11000 100000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.698 0.698 0.698 0.699 0.699 ...
+##   .. ..$ Volume: int  1300000 5500000 7250000 20000 1000 10000 4000 10000 20000 2000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  120 120 120 120 120 ...
+##   .. ..$ Volume: int  258000 1250000 750000 5800000 20000 1000 10000 1000 7000 16000 ...
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.34 1.34 1.34 1.34 1.34 ...
+##   .. ..$ Volume: int  250000 300000 2000000 75000 10000 10000 2000 5000 4000 1000 ...
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  6.34 6.34
+##   .. ..$ Volume: int  1000000 1001000
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  66.1 66.1 66.1 66.1 66.3 ...
+##   .. ..$ Volume: int  5000 1000000 500000 1000000 2000 1000 80000 1000 1000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.635 0.635 0.635 0.636 0.636 ...
+##   .. ..$ Volume: int  2250000 3300000 5750000 100000 1000 10000 1000 100000 12000 2000 ...
+##   ..$ :'data.frame': 14 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.972 0.972 0.972 0.972 0.973 ...
+##   .. ..$ Volume: int  500000 550000 9000 2000000 24000 3000 3000 3000 2000 3000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.936 0.936 0.936 0.937 0.937 ...
+##   .. ..$ Volume: int  250000 250000 750000 28000 12000 11000 12000 12000 11000 92000 ...
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.679 0.679 0.679 0.679 0.679 ...
+##   .. ..$ Volume: int  2208000 500000 1000000 10000 155000 10000 24000 5000 12000
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  83.7 83.7 83.7 84.4 85.1 ...
+##   .. ..$ Volume: int  1250000 1050000 1750000 12000 10000 1000 50000 50000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.1 1.1 1.1 1.1 1.1 ...
+##   .. ..$ Volume: int  250000 500000 750000 2000 2000000 1998000 10000 10000 10000 20000 ...
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  89.4 89.4 89.4 89.4 90.1 ...
+##   .. ..$ Volume: int  1000000 50000 250000 75000 8000 30000 20000 20000 20000
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  123 123 123 124 124 ...
+##   .. ..$ Volume: int  2000000 1000000 1000000 200000 10000 1000 2000 100000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.61 1.61 1.61 1.61 1.61 ...
+##   .. ..$ Volume: int  500000 1500000 1000000 1000 4000 1000 100000 7000 146000 8000 ...
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.51 1.51 1.51 1.51 1.52 ...
+##   .. ..$ Volume: int  1250000 2000000 2950000 2000 10000 95000 10000 10000
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.09 1.09 1.09 1.09 1.09 ...
+##   .. ..$ Volume: int  500000 500000 2050000 270000 8709000 8668000 8641000 8978000 2000
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.739 0.739 0.739 0.74 0.74 ...
+##   .. ..$ Volume: int  50000 500000 500000 10000 30000 20000 9000 10000 10000 1000 ...
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  135 135 135 135 135 ...
+##   .. ..$ Volume: int  250000 952000 250000 1000 3000 10000 3000 1000 6000 20000 ...
+##   ..$ :'data.frame': 7 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.77 1.77 1.77 1.78 1.83 ...
+##   .. ..$ Volume: int  1000000 1000000 500000 20000 10000 10000 5000
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  2.18 2.18 2.18 2.18 2.19 ...
+##   .. ..$ Volume: int  500000 500000 1250000 2000 2000 10000 1000 5000
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.48 1.48 1.48 1.48 1.48 ...
+##   .. ..$ Volume: int  500000 1000000 506000 2000 26000 2000 1000 2000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  182 182 182 182 182 ...
+##   .. ..$ Volume: int  173000 500000 1000000 1500000 2000 10000 50000 1000 2000 3000 ...
+##   ..$ :'data.frame': 12 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  76.2 76.2 76.2 76.2 76.3 ...
+##   .. ..$ Volume: int  1003000 500000 500000 51000 12000 12000 7000 12000 6000 2000 ...
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  6.64 6.64
+##   .. ..$ Volume: int  500000 1000000
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 7.75
 ##   .. ..$ Volume: int 1000000
-##  $ Asks     :List of 51
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   ..$ :'data.frame': 7 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.12 1.12 1.12 1.12 1.12
-##   .. ..$ Volume: int  10000 9000 2250000 7400000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  16.7 16.7 16.7 16.7 16.7
-##   .. ..$ Volume: int  50 25000 35000 50 5000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.4 1.4 1.4 1.4 1.4
-##   .. ..$ Volume: int  2000 10000 1250000 2250000 471000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1207 1197 1194 1194 1194
-##   .. ..$ Volume: int  20 150 1100 200 100
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.2 1.2 1.2 1.2 1.2
-##   .. ..$ Volume: int  1000000 2000000 400000 1000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.928 0.928 0.928 0.928 0.928
-##   .. ..$ Volume: int  8000 500000 500000 400000 10000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.34 1.34 1.34 1.34 1.34
-##   .. ..$ Volume: int  91000 89000 20000 1000000 2000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  100 100 100 100 100
-##   .. ..$ Volume: int  10000 1500000 1400000 1600000 90000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  134 134 134 134 134
-##   .. ..$ Volume: int  3500000 650000 1500000 910000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  188 188 188 188 188
-##   .. ..$ Volume: int  1000000 5000000 1000000 1500000 1417000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  8.29 8.29 8.29 8.29 8.29
-##   .. ..$ Volume: int  1000000 500000 1000000 500000 100000
+##   .. ..$ Price : num  17.1 17.1 17.1 17.1 17.1 ...
+##   .. ..$ Volume: int  170000 31000 1969000 1000000 1000000 37000 116000
 ##   ..$ :'data.frame': 4 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  7.45 7.45 7.45 7.45
-##   .. ..$ Volume: int  87000 1000000 2000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.803 0.803 0.802 0.802 0.802
-##   .. ..$ Volume: int  2000 2000 2500000 2000000 1400000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  129 129 129 129 129
-##   .. ..$ Volume: int  1000000 264000 1000000 1000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.46 1.45 1.45 1.45 1.45
-##   .. ..$ Volume: int  2000 500000 283000 1900000 71000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.748 0.748 0.744 0.744 0.744
-##   .. ..$ Volume: int  20000 100000 1500000 1400000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.08 1.08 1.08 1.08 1.08
-##   .. ..$ Volume: int  1000000 745000 1000000 1000000 492000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.04 1.04 1.04 1.04 1.04
-##   .. ..$ Volume: int  40000 106000 3500000 460000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.57 1.57 1.57 1.57 1.57
-##   .. ..$ Volume: int  20000 14000 500000 1000000 400000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  120 120 120 120 120
-##   .. ..$ Volume: int  2000 18000 2000000 2700000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  96.2 96.1 96.1 96.1 96.1
-##   .. ..$ Volume: int  1512000 2000000 2000000 1500000 752000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.718 0.717 0.717 0.717 0.717
-##   .. ..$ Volume: int  2000 500000 400000 403000 500000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  8.37 8.36 8.36 8.36 8.36
-##   .. ..$ Volume: int  135000 114000 2000000 1000000 1000000
+##   .. ..$ Price : num  8.48 8.48 8.48 8.48
+##   .. ..$ Volume: int  14000 986000 1000000 1000000
 ##   ..$ :'data.frame': 3 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  9.31 9.31 9.31
-##   .. ..$ Volume: int  1000000 500000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.876 0.745 0.745 0.745 0.745
-##   .. ..$ Volume: int  20000 1000000 2620000 320000 100000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.782 0.777 0.775 0.775 0.775
-##   .. ..$ Volume: int  20000 20000 2000000 500000 1000000
+##   .. ..$ Price : num  3.78 3.78 3.78
+##   .. ..$ Volume: int  1000000 2590000 1000000
 ##   ..$ :'data.frame': 4 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  1.98 1.95 1.95 1.95
-##   .. ..$ Volume: int  20000 1000000 250000 360000
+##   .. ..$ Price : num  8.42 8.42 8.42 8.47
+##   .. ..$ Volume: int  1000000 1000000 1000000 4000
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1.43 1.43 1.43 1.43 1.43 ...
+##   .. ..$ Volume: int  2000000 1000000 1000000 63000 306000 155000 1000 10000 2000
 ##   ..$ :'data.frame': 5 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.88 1.88 1.88 1.88 1.88
-##   .. ..$ Volume: int  154000 38000 250000 2000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  2.2 2.13 2.11 2.11 2.11
-##   .. ..$ Volume: int  100000 20000 1000000 2000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.898 0.893 0.891 0.891 0.891
-##   .. ..$ Volume: int  10000 16000 1000000 1000000 2270000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  0.69 0.69 0.69 0.69
-##   .. ..$ Volume: int  500000 1000000 1000000 235000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  89.9 89.1 89.1 89.1 89.1
-##   .. ..$ Volume: int  100000 21000 500000 250000 250000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.51 1.51 1.51 1.51 1.51
-##   .. ..$ Volume: int  100000 1000000 1000000 1000000 100000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  0.967 0.961 0.961 0.961 0.961
-##   .. ..$ Volume: int  20000 1000000 1000000 2000000 3000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  52 49.7 49.7 49.7 49.7
-##   .. ..$ Volume: int  40000 500000 500000 1000000 194000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  90 90 90
-##   .. ..$ Volume: int  1000000 2000000 2000000
+##   .. ..$ Price : num  3.04 3.04 3.04 3.04 3.04
+##   .. ..$ Volume: int  500000 500000 63000 1000000 50000
 ##   ..$ :'data.frame': 1 obs. of  3 variables:
 ##   .. ..$ Type  : chr &quot;Ask&quot;
 ##   .. ..$ Price : num 7.46
-##   .. ..$ Volume: int 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  2.65 2.65 2.65 2.65 2.65
-##   .. ..$ Volume: int  1000000 4000000 2000000 228000 243000
-##   ..$ :'data.frame': 2 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  7.75 7.75
-##   .. ..$ Volume: int  51000 13000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  3.14 3.07 2.98 2.98 2.98
-##   .. ..$ Volume: int  20000 20000 1000000 1000000 1000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  1.33 1.33 1.33 1.33 1.33
-##   .. ..$ Volume: int  20000 12000 500000 250000 400000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  3.64 3.64 3.64 3.64
-##   .. ..$ Volume: int  250000 1500000 250000 370000
-##   ..$ :'data.frame': 1 obs. of  3 variables:
-##   .. ..$ Type  : chr &quot;Ask&quot;
-##   .. ..$ Price : num 15.5
-##   .. ..$ Volume: int 16850000
-##   ..$ :'data.frame': 4 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  2.09 2.09 2.09 2.09
-##   .. ..$ Volume: int  20000 1000000 1000000 1000000
-##   ..$ :'data.frame': 2 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  16.1 16.1
-##   .. ..$ Volume: int  8000000 8000000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  4.13 4.08 4.08 4.08 4.08
-##   .. ..$ Volume: int  20000 2000000 250000 500000 42000
+##   .. ..$ Volume: int 1500000
 ##   ..$ :'data.frame': 3 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  0.99 0.99 0.99
-##   .. ..$ Volume: int  81000 1000000 23000
-##   ..$ :'data.frame': 3 obs. of  3 variables:
-##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  1.11 1.11 1.11
-##   .. ..$ Volume: int  6000 8000000 1000
+##   .. ..$ Price : num  8.7 8.7 8.7
+##   .. ..$ Volume: int  900000 2000000 4000
 ##   ..$ :'data.frame': 4 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
-##   .. ..$ Price : num  8.72 8.72 8.72 8.72
-##   .. ..$ Volume: int  1500000 1000000 498000 2000
-##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Price : num  9.52 9.53 9.53 9.53
+##   .. ..$ Volume: int  316000 684000 1000000 1000000
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  4.24 4.24 4.24 4.24
+##   .. ..$ Volume: int  3000 1000000 2000000 1000000
+##   ..$ :'data.frame': 6 obs. of  3 variables:
 ##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   .. ..$ Price : num  15.3 15.3 15.3 15.3 15.3
-##   .. ..$ Volume: int  1000000 2000000 171000 1000000 500000
+##   .. ..$ Price : num  9.45 9.45 9.45 9.45 9.45 ...
+##   .. ..$ Volume: int  43000 331000 31000 169000 500000 2000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  3.42 3.42 3.42
+##   .. ..$ Volume: int  900000 500000 500000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  2.04 2.04 2.04 2.04 2.04 ...
+##   .. ..$ Volume: int  250000 1250000 1000000 4000 1000 2000 12000 12000 4000 4000 ...
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  2.39 2.39 2.39 2.39 2.4 ...
+##   .. ..$ Volume: int  250000 250000 500000 4000 60000 100000 1000 3000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  2.17 2.17 2.17
+##   .. ..$ Volume: int  1000000 1000000 1000000
+##   ..$ :'data.frame': 14 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.725 0.725 0.725 0.725 0.726 ...
+##   .. ..$ Volume: int  1050000 15000 1000000 1000000 11000 12000 10000 6000 8000 12000 ...
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  15.6 15.6
+##   .. ..$ Volume: int  1000000 350000
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  14.1 14.1
+##   .. ..$ Volume: int  1000000 10000000
+##   ..$ :'data.frame': 4 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  0.992 0.992 0.993 0.993
+##   .. ..$ Volume: int  1000000 4000 29000 1000000
+##   ..$ :'data.frame': 11 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.852 0.852 0.852 0.852 0.852 ...
+##   .. ..$ Volume: int  1000000 138000 500000 500000 12000 11000 12000 12000 1000 10000 ...
+##   ..$ :'data.frame': 9 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  0.618 0.618 0.618 0.618 0.618 ...
+##   .. ..$ Volume: int  2000000 1000000 1000000 12000 1000 11000 13000 12000 10000
 ##   ..$ :'data.frame': 1 obs. of  3 variables:
 ##   .. ..$ Type  : chr &quot;Ask&quot;
-##   .. ..$ Price : num 6.65
-##   .. ..$ Volume: int 1000000</code></pre>
+##   .. ..$ Price : num 0.907
+##   .. ..$ Volume: int 500000
+##   ..$ :'data.frame': 3 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  84 84 84
+##   .. ..$ Volume: int  1000000 1000000 1000000
+##   ..$ :'data.frame': 13 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1127 1127 1128 1128 1128 ...
+##   .. ..$ Volume: int  2 100 500 500 3 2 2 11 11 2 ...
+##   ..$ :'data.frame': 8 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  14.6 14.6 14.6 14.8 14.9 ...
+##   .. ..$ Volume: int  25000 30000 5000 100 200 100 100 50
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 4934
+##   .. ..$ Volume: int 50
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 4364
+##   .. ..$ Volume: int 70
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 9514
+##   .. ..$ Volume: int 40
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 9514
+##   .. ..$ Volume: int 20
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 3048
+##   .. ..$ Volume: int 100
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 5933
+##   .. ..$ Volume: int 21
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : int 17170
+##   .. ..$ Volume: int 3000
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 4128
+##   .. ..$ Volume: int 80
+##   ..$ :'data.frame': 2 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot;
+##   .. ..$ Price : num  4128 4146
+##   .. ..$ Volume: int  20 2
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 1890
+##   .. ..$ Volume: int 500
+##   ..$ :'data.frame': 5 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  1890 1899 1927 1941 1982
+##   .. ..$ Volume: int  190 20 20 20 20
+##   ..$ :'data.frame': 6 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : int  16066 16250 16552 16554 16574 16670
+##   .. ..$ Volume: int  30 5 2 2 1 1
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : int 16066
+##   .. ..$ Volume: int 5
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 48.2
+##   .. ..$ Volume: int 5000
+##   ..$ :'data.frame': 6 obs. of  3 variables:
+##   .. ..$ Type  : chr  &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   .. ..$ Price : num  45 45.3 45.5 47.5 53.5 ...
+##   .. ..$ Volume: int  5000 20 200 20 600 100
+##   ..$ :'data.frame': 1 obs. of  3 variables:
+##   .. ..$ Type  : chr &quot;Ask&quot;
+##   .. ..$ Price : num 2.69
+##   .. ..$ Volume: int 50000</code></pre>
 </div>
 <div id="get-level2-for-symbol" class="slide section level2">
 <h1>Get Level2 for symbol</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;http://tp.dev.soft-fx.eu:5021/api/v1/public/level2/EURUSD&quot;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">fromJSON</span>(<span class="st">&quot;https://ttdemowebapi.soft-fx.com:8443/api/v1/public/level2/EURUSD&quot;</span>))</code></pre>
 <pre><code>## List of 6
 ##  $ Symbol   : chr &quot;EURUSD&quot;
-##  $ Timestamp: num 1.43e+12
+##  $ Timestamp: num 1.44e+12
 ##  $ BestBid  :List of 3
 ##   ..$ Type  : chr &quot;Bid&quot;
 ##   ..$ Price : num 1.12
-##   ..$ Volume: int 1000000
+##   ..$ Volume: int 1939000
 ##  $ BestAsk  :List of 3
 ##   ..$ Type  : chr &quot;Ask&quot;
 ##   ..$ Price : num 1.12
-##   ..$ Volume: int 2000000
-##  $ Bids     :'data.frame':   5 obs. of  3 variables:
-##   ..$ Type  : chr [1:5] &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
-##   ..$ Price : num [1:5] 1.12 1.12 1.12 1.12 1.12
-##   ..$ Volume: int [1:5] 28000 10000 13000000 1500000 1000000
-##  $ Asks     :'data.frame':   5 obs. of  3 variables:
-##   ..$ Type  : chr [1:5] &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
-##   ..$ Price : num [1:5] 1.12 1.12 1.12 1.12 1.12
-##   ..$ Volume: int [1:5] 10000 9000 3250000 8400000 2000000</code></pre>
+##   ..$ Volume: int 50000
+##  $ Bids     :'data.frame':   13 obs. of  3 variables:
+##   ..$ Type  : chr [1:13] &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; &quot;Bid&quot; ...
+##   ..$ Price : num [1:13] 1.12 1.12 1.12 1.12 1.12 ...
+##   ..$ Volume: int [1:13] 1939000 3500000 5000000 10000 1000 10000 5000 4000 12000 8000 ...
+##  $ Asks     :'data.frame':   13 obs. of  3 variables:
+##   ..$ Type  : chr [1:13] &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; &quot;Ask&quot; ...
+##   ..$ Price : num [1:13] 1.12 1.12 1.12 1.12 1.12 ...
+##   ..$ Volume: int [1:13] 50000 3500000 9000000 9000 1000 12000 12000 12000 10000 2000 ...</code></pre>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

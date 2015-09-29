@@ -18,42 +18,42 @@ library(jsonlite)
 
 ## Get currencies
 ```{r}
-fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/currency")
+fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/currency")
 ```
 
 ## Get currency properies
 ```{r}
-fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/currency/EUR")
+fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/currency/EUR")
 
 ```
 
 ## Get symbols
 ```{r}
-fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol")
+fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/symbol")
 ```
 
 ## Get symbol properties
 ```{r}
-str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/symbol/EURUSD"))
+str(fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/symbol/EURUSD"))
 ```
 
 ## Get ticks for all symbols
 ```{r}
-str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/tick"))
+str(fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/tick"))
 ```
 
 ## Get best bid/ask for symbol
 ```{r}
-str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/tick/EURUSD"))
+str(fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/tick/EURUSD"))
 ```
 
 ## Get Level2 for all symbols
 ```{r}
-str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/level2"))
+str(fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/level2"))
 ```
 
 ## Get Level2 for symbol
 ```{r}
-str(fromJSON("http://tp.dev.soft-fx.eu:5021/api/v1/public/level2/EURUSD"))
+str(fromJSON("https://ttdemowebapi.soft-fx.com:8443/api/v1/public/level2/EURUSD"))
 ```
 
