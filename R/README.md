@@ -16,7 +16,9 @@ install_github("SoftFx/TTWebClient-R",subdir = "R/rTTRatesHistory")
  You can use function ttInitialize to set server name and port:
 1) cryptottlivewebapi.xbtce.net - xBTCe WebAPI
 2) ttlivewebapi.fxopen.com - TT Live WebAPI
+
 Port is 8443 as default
+
 To get Quotes, Bars, etc. info you should call function from R list object which was created by ttInitialize with the appropriate parameters. 
 See code below
 
