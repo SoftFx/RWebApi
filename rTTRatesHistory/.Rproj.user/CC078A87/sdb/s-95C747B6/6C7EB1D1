@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(rTTRatesHistory)\n\n###Init connection\nconnection <- ttInitialize(serverName = \"cryptottlivewebapi.xbtce.net\", port = \"8443\")\nconnection_2 <- ttInitialize(serverName = \"ttlivewebapi.fxopen.com\", port = \"8443\")\n\nstartTime = as.POSIXct(\"2018-10-11\", tz = \"GMT\")\nendTime = as.POSIXct(\"2018-10-12\", tz = \"GMT\")\n\n###Get Symbols properties\nsymbols <- connection$GetSymbolsInfo()\nsymbols_2 <- connection2$GetSymbolsInfo()\n\n###Get Bars History\nbars <- connection$GetBarsHistrory(\"BTCUSD\", barsType = \"Bid\", periodicity = \"M1\", startTime, endTime)\nbars_2 <- connection2$GetBarsHistrory(\"BTCUSD\", barsType = \"Bid\", periodicity = \"M1\", startTime, endTime)\n\n###Get Best Ticks History\nticks <- connection$GetTickHistory(\"BTCUSD\", startTime, endTime)\nticks_2 <- connection2$GetTickHistory(\"EURUSD\", startTime, endTime)\n\n###Get Current Ticks\ncurrentQuotes <- connection$GetCurrentQuotes()\ncurrentQuotes_2 <- connection_2$GetCurrentQuotes()\n\n",
+    "created" : 1544632894981.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3326560127",
+    "id" : "6C7EB1D1",
+    "lastKnownWriteTime" : 1544630461,
+    "last_content_update" : 1544630461,
+    "path" : "C:/Users/yury.maisiayonak/Desktop/TTWebClient-R/rTTQuotesDownloader/examples.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

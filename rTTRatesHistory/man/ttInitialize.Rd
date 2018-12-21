@@ -20,9 +20,9 @@ connection <- ttInitialize(serverName = "cryptottlivewebapi.xbtce.net", port = "
 
 symbols <- connection$GetSymbolsInfo()
 
-bars <- connection$GetBarsHistrory("BTCUSD", barsType = "Bid", periodicity = "M1", as.POSIXct("2018-10-12 00:00:00", tz = "GMT"), as.POSIXct("2018-10-12 05:00:00", tz = "GMT"))
+bars <- connection$GetBarsHistrory("BTCUSD", barsType = "Bid", periodicity = "M1", as.POSIXct("2018-10-12 00:00:00", tz = "GMT"), as.POSIXct("2018-10-12 05:00:00", tz = "GMT"), count = 0)
 
-ticks <- connection$GetTickHistory("BTCUSD", as.POSIXct("2018-10-12 00:00:00", tz = "GMT"), as.POSIXct("2018-10-12 05:00:00", tz = "GMT"))
+ticks <- connection$GetTickHistory("BTCUSD", as.POSIXct("2018-10-12 00:00:00", tz = "GMT"), as.POSIXct("2018-10-12 05:00:00", tz = "GMT"), count = 0)
 
 currentQuotes <- connection$GetCurrentQuotes()
 }

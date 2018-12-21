@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "import(jsonlite)\nimport(httr)\nimport(data.table)\n\nexport(ttInitialize)\n",
+    "created" : 1544549403813.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "642911760",
+    "id" : "8D35471A",
+    "lastKnownWriteTime" : 1544631359,
+    "last_content_update" : 1544631359557,
+    "path" : "~/rTTRatesHistory/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_namespace"
+}
