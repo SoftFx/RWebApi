@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: rTTRatesHistory\nType: Package\nTitle: Quotes from WebApi\nVersion: 0.1.0\nAuthor: Yury Maisiayonak\nMaintainer: The package maintainer <yourself@somewhere.net>\nDescription: This package was created to replace rFdk without using rClr. It works with WebAPi and downloads QuotesHistory, BarsHistory, SymbolInfo directly from WebAPI\nLicense: What license is it under?\nEncoding: UTF-8\nImports: \n    data.table,\n    jsonlite,\n    httr\nLazyData: true\nRoxygenNote: 6.1.1\n",
+    "created" : 1544631969690.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1850776426",
+    "id" : "DC71B90C",
+    "lastKnownWriteTime" : 1544549857,
+    "last_content_update" : 1544549857,
+    "path" : "~/rTTRatesHistory/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}
