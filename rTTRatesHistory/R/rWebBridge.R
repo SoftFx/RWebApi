@@ -1,6 +1,6 @@
 GetBarFromWeb <- function(server, symbol, barsType, periodicity, startTimeMs, count){
   querryInit <- paste("https://", server,"/api/v1/public/quotehistory",symbol, periodicity, "bars", barsType, sep= "/")
-  querry <- paste0(querryInit,"?","timestamp=",startTimeMs,"&count=", count)
+  querry <- paste0(querryInit,"?","timestamp=",round(startTimeMs,0),"&count=", count)
   connect <- GET(querry)
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
@@ -13,7 +13,7 @@ GetBarFromWeb <- function(server, symbol, barsType, periodicity, startTimeMs, co
 
 GetTicksFromWeb <- function(server, symbol, startTimeMs, count){
   querryInit <- paste("https://", server,"/api/v1/public/quotehistory",symbol, "ticks", sep= "/")
-  querry <- paste0(querryInit,"?","timestamp=",startTimeMs,"&count=", count)
+  querry <- paste0(querryInit,"?","timestamp=",round(startTimeMs, 0),"&count=", count)
   connect <- httr::GET(querry)
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
