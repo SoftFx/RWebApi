@@ -17,3 +17,5 @@ ticks_1 <- connection$GetTickHistory("BTCUSD", as.POSIXct("2018-10-12 00:00:00",
 ticks_2 <- connection$GetTickHistory("BTCUSD", as.POSIXct("2018-10-12 00:00:00", tz = "GMT"), as.POSIXct("2018-10-12 05:00:00", tz = "GMT"), -300)
 
 currentQuotes <- connection$GetCurrentQuotes()
+#Get all symbols 1 tick by timestamp
+ticksByTimestamp <- connection$GetTicksByTimestamp(as.POSIXct(Sys.Date(), tz = "GMT"))

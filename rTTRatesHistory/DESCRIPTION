@@ -10,6 +10,7 @@ Encoding: UTF-8
 Imports: 
     data.table,
     jsonlite,
-    httr
+    httr,
+    foreach
 LazyData: true
 RoxygenNote: 6.1.1
