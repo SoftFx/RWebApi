@@ -25,7 +25,7 @@ See code below
 ```
 library(rTTRatesHistory)
 
-connection <- ttInitialize(serverName = "cryptottlivewebapi.xbtce.net", port = "8443")
+connection <- ttInitialize(serverName = "cryptottlivewebapi.xbtce.net", port = "8443") #or forex symbols from ttlivewebapi.fxopen.com
 
 symbols <- connection$GetSymbolsInfo()
 
