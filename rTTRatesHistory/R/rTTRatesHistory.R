@@ -106,7 +106,7 @@ ttInitialize <- function(serverName = "cryptottlivewebapi.xbtce.net", port = "84
     GetCurrentQuotes = function() {
       return(GetCurrentQuotesFromWeb(server))
     },
-    GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime, count = 0){
+    GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0){
       if(barsType == "BidAsk"){
         return(GetBidAskBar(server, symbol, periodicity, startTime, endTime, count))
       }
@@ -115,7 +115,7 @@ ttInitialize <- function(serverName = "cryptottlivewebapi.xbtce.net", port = "84
       }
       stop("Wrong barsType")
     },
-    GetTickHistory = function(symbol, startTime, endTime, count = 0) {
+    GetTickHistory = function(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0) {
       return(GetTicks(server, symbol, startTime, endTime, count))
     },
     GetTicksByTimestamp = function(timestamp) {
