@@ -1,7 +1,7 @@
 GetBarFromWeb <- function(server, symbol, barsType, periodicity, startTimeMs, count){
   querryInit <- paste("https://", server,"/api/v1/public/quotehistory",symbol, periodicity, "bars", barsType, sep= "/")
   querry <- paste0(querryInit,"?","timestamp=",round(startTimeMs,0),"&count=", count)
-  connect <- GET(querry)
+  connect <- GET(querry, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
   }
@@ -14,7 +14,7 @@ GetBarFromWeb <- function(server, symbol, barsType, periodicity, startTimeMs, co
 GetTicksFromWeb <- function(server, symbol, startTimeMs, count){
   querryInit <- paste("https://", server,"/api/v1/public/quotehistory",symbol, "ticks", sep= "/")
   querry <- paste0(querryInit,"?","timestamp=",round(startTimeMs, 0),"&count=", count)
-  connect <- httr::GET(querry)
+  connect <- httr::GET(querry, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
   }
@@ -29,7 +29,7 @@ GetTicksFromWeb <- function(server, symbol, startTimeMs, count){
 
 GetSymbolsInfoFromWeb <- function(server){
   querry = paste0("https://", server, "/api/v1/public/symbol")
-  connect = httr::GET(querry)
+  connect = httr::GET(querry, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
   }
@@ -42,7 +42,7 @@ GetSymbolsInfoFromWeb <- function(server){
 
 GetCurrentQuotesFromWeb <- function(server) {
   querry <-  paste0("https://", server,"/api/v1/public/tick")
-  connect <- httr::GET(querry)
+  connect <- httr::GET(querry, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
   if(connect$status_code != 200) {
     stop(paste("status_code is not OK", connect$status_code))
   }

@@ -121,9 +121,8 @@ ttInitialize <- function(serverName = "cryptottlivewebapi.xbtce.net", port = "84
     GetTicksByTimestamp = function(timestamp) {
       symbols <- GetSymbolsInfoFromWeb(server)
       symbols <- symbols[!grepl("_L$", symbols$Symbol)]
-      symbols <- symbols[!grepl("#", symbols$Symbol)]
       quotes <- foreach(symbol = symbols$Symbol, .combine = rbind) %do%{
-        quote <- GetTicks(server, symbol, timestamp, timestamp, -1)
+        quote <- GetTicks(server, sub("#", "%23", symbol), timestamp, timestamp, -1)
         quote <- quote[, Symbol:= symbol]
         quote
       }
