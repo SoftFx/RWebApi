@@ -7,7 +7,7 @@ This package use httr, jsonlite, data.table r libraries. Please install them bef
 # How to install RTTWebClient?
 ```
 if(!require(devtools)) {install.packages("devtools"); library(devtools)}
-if(require(RTTWebClient)) {detach("package:rTTRatesHistory", unload=TRUE); remove.packages("RTTWebClient")}
+if(require(RTTWebClient)) {detach("package:RTTWebClient", unload=TRUE); remove.packages("RTTWebClient")}
 install_github("SoftFx/TTWebClient-R",subdir = "RTTWebClient")	 
 
 ```
