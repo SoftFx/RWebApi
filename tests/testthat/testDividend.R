@@ -1,4 +1,4 @@
-ttWebHost <- InitRTTWebApiHost(server = "tt.tt-ag.st.soft-fx.eu")
+ttWebHost <- InitRTTWebApiHost(server = "ttlivewebapi.fxopen.com")
 
 test_that("Is Dividends right format", {
   divs = ttWebHost$GetDividends()

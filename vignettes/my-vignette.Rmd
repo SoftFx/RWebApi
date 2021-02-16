@@ -23,7 +23,7 @@ library(lubridate)
 
 ## Init Public(default) Client Obj (reference R class)
 ```{r}
-ttWebClient <- InitPublicWebClient(server = "tt.tt-ag.st.soft-fx.eu")
+ttWebClient <- InitPublicWebClient(server = "ttlivewebapi.fxopen.com")
 #or use InitPrivateWebClient(server = "tt.tt-ag.st.soft-fx.eu", port = 8443, id = "", key = "", secret = "") to set a private connect. Need set HMAC id, key and secret
 ```
 
@@ -47,7 +47,7 @@ print(ttWebClient$GetBarFromWeb("EURUSD", "Bid","M1", round(as.double(now("UTC")
 
 ## Init RTTWebApiHost obj
 ```{r}
-ttWebApiHost <- InitRTTWebApiHost(server = "tt.tt-ag.st.soft-fx.eu")
+ttWebApiHost <- InitRTTWebApiHost(server = "ttlivewebapi.fxopen.com")
 ```
 
 ## Get Dividends data.table
