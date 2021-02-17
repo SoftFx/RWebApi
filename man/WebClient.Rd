@@ -17,16 +17,26 @@ RTTWebApiHost
 \section{Methods}{
 
 \describe{
-\item{\code{GetBarsHistory(symbol, barsType = "Bid", periodicity = "M1", startTime,
-  endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0)}}{Get Bar History}
+\item{\code{GetBarsHistory(
+  symbol,
+  barsType = "Bid",
+  periodicity = "M1",
+  startTime,
+  endTime = as.POSIXct(Sys.Date(), tz = "GMT"),
+  count = 0
+)}}{Get Bar History}
 
 \item{\code{GetCurrentQuotes()}}{Get All Current Quotes}
 
-\item{\code{GetDividends()}}{Get All Dividen}
+\item{\code{GetDividends()}}{Get All Dividend}
 
 \item{\code{GetSymbolsInfo()}}{Get All Symbols}
 
-\item{\code{GetTickHistory(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz =
-  "GMT"), count = 0)}}{Get Bar History}
+\item{\code{GetTickHistory(
+  symbol,
+  startTime,
+  endTime = as.POSIXct(Sys.Date(), tz = "GMT"),
+  count = 0
+)}}{Get Bar History}
 }}
 

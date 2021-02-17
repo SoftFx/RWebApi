@@ -1,6 +1,6 @@
 Package: RTTWebClient
 Type: Package
-Title: RTTWebClient
+Title: Web Client to TickTrader
 Version: 0.1.0
 Author: Yury Maisiayonak
 Maintainer: SOFT-FX <yury.maisiayonak@soft-fx.lv>
@@ -11,12 +11,11 @@ Imports:
     data.table,
     jsonlite,
     httr,
-    foreach,
     digest,
-    base64enc
+    base64enc,
+    methods
 LazyData: true
-Standardizable: FALSE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Suggests:
     spelling, 
     knitr,

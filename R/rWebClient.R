@@ -1,24 +1,27 @@
 GetBars <- function(GetBarMethod, symbol, barsType = "Bid", periodicity = "M1", startTime, endTime, count) {
   tempStartTime <- as.double(startTime)*1000
-  history <- data.table()
+  history <- data.table("Volume"= numeric(),
+                        "Close" = numeric(), "Low"= numeric(),"High"= numeric(), "Open"= numeric(),
+                        "Timestamp"= numeric())
   maxCount <- 1000
   if(count == 0) {
     repeat{
       bars <- GetBarMethod(symbol, barsType, periodicity, tempStartTime, maxCount)
-      excludeIndex <-ifelse(is.null(history[.N]$Timestamp), numeric(0), bars[Timestamp==history[.N]$Timestamp,which=T])
+      lastHistoryNoteTimestamp <- history[.N, Timestamp]
+      excludeIndex <-ifelse(length(lastHistoryNoteTimestamp) <= 0, numeric(0), bars[Timestamp==lastHistoryNoteTimestamp,which=T])
       if(!is.na(excludeIndex))
         bars <-bars[-excludeIndex]
       if(nrow(bars) == 0) {
         break;
       }else{
         endTimeInMs <- as.double(endTime) * 1000
-        if(bars[.N]$Timestamp >= endTimeInMs){
+        if(bars[.N, Timestamp] >= endTimeInMs){
           history = rbind(history, bars[Timestamp <= endTimeInMs])
           break;
         }
       }
       history <- rbind(history, bars)
-      tempStartTime <- history[.N]$Timestamp
+      tempStartTime <- history[.N, Timestamp]
     }
   }else{
     if(abs(count) < maxCount){
@@ -27,32 +30,36 @@ GetBars <- function(GetBarMethod, symbol, barsType = "Bid", periodicity = "M1", 
       history <- GetBarMethod(symbol, barsType, periodicity, tempStartTime, maxCount * sign(count))
     }
   }
-  history$Timestamp <- as.POSIXct(history$Timestamp/1000, origin = "1970-01-01", tz = "GMT")
+  history[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
   setkey(history, Timestamp)
   return(history)
 }
 
 GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
   tempStartTime <- as.double(startTime)*1000
-  history <- data.table()
+  history <- data.table("Timestamp" = numeric(),
+                        "BidPrice" = numeric() , "BidVolume" = numeric(),
+                        "BidType" = character(), "AskPrice" = numeric(),
+                        "AskVolume" = numeric(),  "AskType" = character() )
   maxCount <- 1000
   if(count == 0) {
     repeat{
       ticks <- GetTickMethod(symbol, tempStartTime, maxCount)
-      excludeIndex <-ifelse(is.null(history[.N]$Timestamp), numeric(0), ticks[Timestamp==history[.N]$Timestamp,which=T])
+      lastHistoryNoteTimestamp <- history[.N, Timestamp]
+      excludeIndex <-ifelse(length(lastHistoryNoteTimestamp) <= 0, numeric(0), ticks[Timestamp==lastHistoryNoteTimestamp, which=TRUE])
       if(!is.na(excludeIndex))
         ticks <-ticks[-excludeIndex]
       if(nrow(ticks) == 0) {
         break;
       }else{
         endTimeInMs <- as.double(endTime) * 1000
-        if(ticks[.N]$Timestamp >= endTimeInMs){
+        if(ticks[.N, Timestamp] >= endTimeInMs){
           history = rbind(history, ticks[Timestamp <= endTimeInMs])
           break;
         }
       }
       history <- rbind(history, ticks)
-      tempStartTime <- history[.N]$Timestamp
+      tempStartTime <- history[.N, Timestamp]
     }
   }else{
     if(abs(count) < maxCount){
@@ -61,7 +68,7 @@ GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
       history <- GetTickMethod(symbol, tempStartTime, maxCount * sign(count))
     }
   }
-  history$Timestamp <- as.POSIXct(history$Timestamp/1000, origin = "1970-01-01", tz = "GMT")
+  history[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
   setkey(history, Timestamp)
   return(history)
 }
@@ -343,7 +350,7 @@ RTTWebApiHost <- setRefClass("RTTWebApiHost",
 RTTWebApiHost$methods(
   GetDividends = function()
   {
-    "Get All Dividen"
+    "Get All Dividend"
     return(.self$client$GetDividendsFromWeb())
   }
 )
@@ -408,6 +415,7 @@ RTTWebApiHost$methods(
 #'@param key a character. HMAC client key.
 #'@param secret a character. HMAC secret key.
 #'@return RTTWebApiHost ref class.
+#'@importFrom methods new
 #'@export
 InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = NULL, key = NULL, secret = NULL){
   if(length(id) != 0 && length(key) != 0 && length(secret) != 0)

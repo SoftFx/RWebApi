@@ -9,12 +9,6 @@
 \item{startTimeMs.}{Long numeric. Timestamp from 1970-01-01 in ms.}
 
 \item{count.}{Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.}
-
-\item{symbol.}{A character. Symbol Name.}
-
-\item{startTimeMs.}{Long numeric. Timestamp from 1970-01-01 in ms.}
-
-\item{count.}{Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.}
 }
 \value{
 data.table with Ticks Info.
