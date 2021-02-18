@@ -111,7 +111,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
       url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            add_headers(Authorization = getHMACHeaders(url_abs, web_api_id, web_api_key, web_api_secret)))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -132,7 +132,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
       url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            add_headers(Authorization = getHMACHeaders(url_abs, web_api_id, web_api_key, web_api_secret)))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -155,7 +155,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
       url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            add_headers(Authorization = getHMACHeaders(url_abs, web_api_id, web_api_key, web_api_secret)))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -181,7 +181,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            add_headers(Authorization = getHMACHeaders(url_abs, web_api_id, web_api_key, web_api_secret)))
 
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -205,7 +205,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
 
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            add_headers(Authorization = getHMACHeaders(url_abs, web_api_id, web_api_key, web_api_secret)))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -229,8 +229,8 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
         address <- paste0(address, ":", web_api_port)
 
       url_abs <- paste0(address, url_rel)
-      connect <- httr::GET(url_abs, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
-      data <- content(connect, "text", encoding = "UTF-8")
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -252,8 +252,8 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
         address <- paste0(address, ":", web_api_port)
 
       url_abs <- paste0(address, url_rel)
-      connect <- httr::GET(url_abs, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
-      data <- content(connect, "text", encoding = "UTF-8")
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -276,7 +276,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
 
       url_abs <- paste0(address, url_rel)
       connect = httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
@@ -297,7 +297,7 @@ RWebApiClient <- function(web_api_address, web_api_port = 8443, web_api_id = NUL
 
       url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
-      data <- content(connect, "text", encoding = "UTF-8")
+      data <- httr::content(connect, "text", encoding = "UTF-8")
       if(connect$status_code != 200) {
         stop(paste("status_code is not OK", connect$status_code, as.character(data)))
       }
