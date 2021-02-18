@@ -23,7 +23,7 @@ RTTWebApiHost
   periodicity = "M1",
   startTime,
   endTime = as.POSIXct(Sys.Date(), tz = "GMT"),
-  count = 0
+  count = 0L
 )}}{Get Bar History}
 
 \item{\code{GetCurrentQuotes()}}{Get All Current Quotes}
@@ -36,7 +36,7 @@ RTTWebApiHost
   symbol,
   startTime,
   endTime = as.POSIXct(Sys.Date(), tz = "GMT"),
-  count = 0
+  count = 0L
 )}}{Get Bar History}
 }}
 

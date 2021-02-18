@@ -10,9 +10,11 @@
 
 \item{periodicity.}{a character. Periodicity. From c("S1", "S10", "M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1","MN1")}
 
-\item{startTimeMs.}{Long numeric. Timestamp from 1970-01-01 in ms.}
+\item{startTime}{a POSIXct obj. Start Time in UTC.}
 
-\item{count.}{Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.}
+\item{endTime}{a POSIXct obj. End Time in UTC.}
+
+\item{count.}{Integer. Count of returned Bars from startTime. Max is 1000. Can be negative. If count == 0, use time interval between startTime and endTime.}
 }
 \value{
 data.table with Bar Info

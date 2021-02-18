@@ -1,8 +1,8 @@
 ---
-title: "my-vignette"
+title: "RTTWebClient"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{RTTWebClient}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,7 +24,7 @@ library(lubridate)
 ## Init Public(default) Client Obj (reference R class)
 ```{r}
 ttWebClient <- InitPublicWebClient(server = "ttlivewebapi.fxopen.com")
-#or use InitPrivateWebClient(server = "tt.tt-ag.st.soft-fx.eu", port = 8443, id = "", key = "", secret = "") to set a private connect. Need set HMAC id, key and secret
+#or use InitPrivateWebClient(server = "ttlivewebapi.fxopen.com", port = 8443, id = "", key = "", secret = "") to set a private connect. Need set HMAC id, key and secret
 ```
 
 ## Get Dividends data.table
@@ -47,7 +47,7 @@ print(ttWebClient$GetBarFromWeb("EURUSD", "Bid","M1", round(as.double(now("UTC")
 print(ttWebClient$GetTicksFromWeb("EURUSD", round(as.double(now("UTC")) * 1000), count = -10))
 ```
 
-#Example of RTTWebApiHost (Wrapper about RTTWebClient to make request from R easy)
+# Example of RTTWebApiHost (Wrapper about RTTWebClient to make request from R easy)
 
 ## Init RTTWebApiHost obj
 ```{r}

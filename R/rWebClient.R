@@ -308,7 +308,6 @@ RTTWebClient$methods(
 #'@return rTTWebClient obj.
 #'@export
 InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L) {
-  options(scipen = 999)
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port))
 }
@@ -323,7 +322,6 @@ InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L) 
 #'@return rTTWebClient obj.
 #'@export
 InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = "", key = "", secret = "") {
-  options(scipen = 999)
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port,
                       web_api_id = id,
@@ -381,11 +379,12 @@ RTTWebApiHost$methods(
 #' @param symbol a character. Symbol Name.
 #' @param barsType. a character. Bars Type. One from c("Ask", "Bid").
 #' @param periodicity. a character. Periodicity. From c("S1", "S10", "M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1","MN1")
-#' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
-#' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
+#' @param startTime a POSIXct obj. Start Time in UTC.
+#' @param endTime a POSIXct obj. End Time in UTC.
+#' @param count. Integer. Count of returned Bars from startTime. Max is 1000. Can be negative. If count == 0, use time interval between startTime and endTime.
 #' @return data.table with Bar Info
 RTTWebApiHost$methods(
-  GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0) {
+  GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0L) {
     "Get Bar History"
     if(barsType == "Bid" || barasType == "Ask"){
       return(GetBars(.self$client$GetBarFromWeb, symbol, barsType, periodicity, startTime, endTime, count))
@@ -397,11 +396,12 @@ RTTWebApiHost$methods(
 #'Get Ticks History
 #' @name GetTicksFromWeb
 #' @param symbol. A character. Symbol Name.
-#' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
-#' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
+#' @param startTime a POSIXct obj. Start Time in UTC.
+#' @param endTime a POSIXct obj. End Time in UTC.
+#' @param count. Integer. Count of returned Ticks from startTime. Max is 1000. Can be negative. If count == 0, use time interval between startTime and endTime.
 #' @return data.table with Ticks Info.
 RTTWebApiHost$methods(
-  GetTickHistory = function(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0) {
+  GetTickHistory = function(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0L) {
     "Get Bar History"
     return(GetTicks(.self$client$GetTicksFromWeb, symbol, startTime, endTime, count))
   }
