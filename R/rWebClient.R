@@ -40,7 +40,7 @@ GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
   history <- data.table("Timestamp" = numeric(),
                         "BidPrice" = numeric() , "BidVolume" = numeric(),
                         "BidType" = character(), "AskPrice" = numeric(),
-                        "AskVolume" = numeric(),  "AskType" = character() )
+                        "AskVolume" = numeric(),  "AskType" = character())
   maxCount <- 1000
   if(count == 0) {
     repeat{
@@ -233,6 +233,9 @@ RTTWebClient$methods(
 RTTWebClient$methods(
   GetBarFromWeb = function(symbol, barsType, periodicity, startTimeMs, count){
     "Get Bar History"
+
+    # nonScienceFormat <- options(scipen = 999)
+    # on.exit(options(nonScienceFormat))
     address <- .self$web_api_address
     if(!grepl("^https://", address))
       address <- paste0("https://", address)
@@ -256,8 +259,11 @@ RTTWebClient$methods(
       stop(paste("status_code is not OK", connect$status_code, as.character(data)))
     }
     bars <- fromJSON(data)
-    bars <- as.data.table(bars$Bars)
-    return(bars)
+    if(length(bars$Bars) < 1)
+      return(data.table("Volume"= numeric(),
+                 "Close" = numeric(), "Low"= numeric(),"High"= numeric(), "Open"= numeric(),
+                 "Timestamp"= numeric()))
+    return(as.data.table(bars$Bars))
   }
 )
 
@@ -270,6 +276,9 @@ RTTWebClient$methods(
 RTTWebClient$methods(
   GetTicksFromWeb = function(symbol, startTimeMs, count){
     "Get Ticks History"
+
+    # nonScienceFormat <- options(scipen = 999)
+    # on.exit(options(nonScienceFormat))
     address <- .self$web_api_address
     if(!grepl("^https://", address))
       address <- paste0("https://", address)
@@ -295,10 +304,14 @@ RTTWebClient$methods(
     }
     ticks <- fromJSON(data)
     ticks <- ticks$Ticks
-    ticks <- data.table("Timestamp" = ticks$Timestamp, "BidPrice" = ticks$BestBid$Price,
-                        "BidVolume" = ticks$BestBid$Volume, "BidType" = ticks$BestBid$Type,  "AskPrice" = ticks$BestAsk$Price,
-                        "AskVolume" = ticks$BestAsk$Volume, "AskType" = ticks$BestAsk$Type)
-    return(ticks)
+    if(length(ticks) < 1)
+      return(data.table("Timestamp" = numeric(),
+                        "BidPrice" = numeric() , "BidVolume" = numeric(),
+                        "BidType" = character(), "AskPrice" = numeric(),
+                        "AskVolume" = numeric(),  "AskType" = character()))
+    return(data.table("Timestamp" = ticks$Timestamp, "BidPrice" = ticks$BestBid$Price,
+                      "BidVolume" = ticks$BestBid$Volume, "BidType" = ticks$BestBid$Type,  "AskPrice" = ticks$BestAsk$Price,
+                      "AskVolume" = ticks$BestAsk$Volume, "AskType" = ticks$BestAsk$Type))
   }
 )
 #' Init Public Web Client Obj
