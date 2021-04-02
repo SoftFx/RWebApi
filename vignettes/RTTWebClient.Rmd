@@ -29,22 +29,22 @@ ttWebClient <- InitPublicWebClient(server = "ttlivewebapi.fxopen.com")
 
 ## Get Dividends data.table
 ```{r}
-print(ttWebClient$GetDividendsFromWeb())
+print(ttWebClient$GetDividendsRawMethod())
 ```
 
 ## Get Symbol data.table
 ```{r}
-print(ttWebClient$GetSymbolsInfoFromWeb())
+print(ttWebClient$GetSymbolsInfoRawMethod())
 ```
 
 ## Get BarHistory data.table
 ```{r}
-print(ttWebClient$GetBarFromWeb("EURUSD", "Bid","M1", round(as.double(now("UTC")) * 1000), count = -10))
+print(ttWebClient$GetBarRawMethod("EURUSD", "Bid","M1", round(as.double(now("UTC")) * 1000), count = -10))
 ```
 
 ## Get TickHistory data.table
 ```{r}
-print(ttWebClient$GetTicksFromWeb("EURUSD", round(as.double(now("UTC")) * 1000), count = -10))
+print(ttWebClient$GetTicksRawMethod("EURUSD", round(as.double(now("UTC")) * 1000), count = -10))
 ```
 
 # Example of RTTWebApiHost (Wrapper about RTTWebClient to make request from R easy)

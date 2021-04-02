@@ -8,7 +8,7 @@ test_that("Is Last 10 Ticks right format", {
   }else{
     reqTimeInMS <- 0
   }
-  ticks <- ttPublicClient$GetTicksFromWeb("EURUSD", reqTimeInMS, count = -10)
+  ticks <- ttPublicClient$GetTicksRawMethod("EURUSD", reqTimeInMS, count = -10)
   expect_equal(typeof(ticks), "list")
   # expect_true(is.data.table(ticks))
   ticksColNames <- colnames(ticks)
@@ -23,7 +23,7 @@ test_that("Is Last 10 Bars right format", {
   }else{
     reqTimeInMS <- 0
   }
-  bars <- ttPublicClient$GetBarFromWeb("EURUSD", "Bid", "M1", reqTimeInMS, count = -10)
+  bars <- ttPublicClient$GetBarRawMethod("EURUSD", "Bid", "M1", reqTimeInMS, count = -10)
   expect_equal(typeof(bars), "list")
   # expect_true(is.data.table(bars))
   barsColNames <- colnames(bars)

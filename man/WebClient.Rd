@@ -24,6 +24,8 @@ RTTWebApiHost
 
 \item{\code{GetDividends()}}{Get All Dividend}
 
+\item{\code{GetPipsValue(targetCurrency, symbols)}}{Get Pips Value}
+
 \item{\code{GetSymbolsInfo()}}{Get All Symbols}
 
 \item{\code{GetTickHistory(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz =
