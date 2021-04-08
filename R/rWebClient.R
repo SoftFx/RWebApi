@@ -203,14 +203,16 @@ RTTWebClient$methods(
       address <- paste0(address, ":", .self$web_api_port)
     if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
       url_rel <- paste("/api/v2/pipsvalue")
-      url_rel <- paste0(url_rel,"?","targetCurrency=",targetCurrency,"&symbols=", paste(symbols, collapse = " "))
-      url_abs <- utils::URLencode(paste0(address, url_rel), reserved = FALSE)
+      url_rel <- paste0(url_rel,"?","targetCurrency=",targetCurrency,"&symbols=", symbols)
+      # url_abs <- utils::URLencode(paste0(address, url_rel), reserved = FALSE)
+      url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
                            httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
     }else{
       url_rel <- paste("/api/v2/public/pipsvalue")
-      url_rel <- paste0(url_rel,"?","targetCurrency=",targetCurrency,"&symbols=", paste(symbols, collapse = " "))
-      url_abs <- utils::URLencode(paste0(address, url_rel), reserved = FALSE)
+      url_rel <- paste0(url_rel,"?","targetCurrency=",targetCurrency,"&symbols=", symbols)
+      # url_abs <- utils::URLencode(paste0(address, url_rel), reserved = FALSE)
+      url_abs <- paste0(address, url_rel)
       connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
 
     }
@@ -408,7 +410,9 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetSymbolsInfo = function() {
     "Get All Symbols"
-    return(.self$client$GetSymbolsInfoRawMethod())
+    symbols <- .self$client$GetSymbolsInfoRawMethod()
+    symbols[!grepl("_L$", Symbol), PipsValue := .self$GetPipsValue("USD", Symbol)[,(Value)]]
+    return(symbols)
   }
 )
 
@@ -429,6 +433,7 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetPipsValue = function(targetCurrency, symbols) {
     "Get Pips Value"
+    symbols <- paste(sapply(symbols, URLencode, reserved = TRUE, USE.NAMES = FALSE), collapse = URLencode(" ", reserved = FALSE))
     pipsValue <- .self$client$GetPipsValueRawMethod(targetCurrency, symbols)
     setcolorder(pipsValue, c(2,1))
     setkey(pipsValue, "Symbol")
