@@ -1,7 +1,7 @@
 Package: RTTWebClient
 Type: Package
 Title: Web Client to 'TickTrader'
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Yury","Maisiayonak", role=c("aut","cre"), email="yury.maisiayonak@soft-fx.lv"))
 Description: R Web Client to 'TickTrader' platform. Provides you access to 'TickTrader' platform through Web API <https://ttlivewebapi.fxopen.net:8443/api/doc/index>.
 License: GPL-2
@@ -12,14 +12,16 @@ Imports:
     httr,
     digest,
     base64enc,
-    methods
+    methods,
+    withr
 LazyData: true
 RoxygenNote: 7.1.1
 Suggests:
-    spelling, 
+    spelling,
     knitr,
     rmarkdown,
     testthat,
-    lubridate
+    lubridate,
+    vcr
 VignetteBuilder: knitr
 Language: en-US

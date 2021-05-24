@@ -1,0 +1,110 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://ttlivewebapi.fxopen.com/api/v2/public/quotehistory/EURUSD/M1/bars/Bid?timestamp=1893456000000&count=-10
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Mon, 24 May 2021 13:56:19 GMT
+      content-type: application/json; charset=utf-8
+      content-length: '302'
+      connection: keep-alive
+      content-encoding: gzip
+      cf-cache-status: DYNAMIC
+      cf-request-id: 0a40429a9e000015e4a813c000000001
+      expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=O1TUnLP76wCfABteTAvEhlTRZe0%2F%2F4%2FxXwVYKGOS%2FHnkOEMxZTcuGwanV6LDJncszg2KGNpTa5qM%2Bpr7M3j1vngko681I%2BWMd0m54kFToG2Os1pXrXdvadwBFPVj"}],"group":"cf-nel","max_age":604800}'
+      nel: '{"report_to":"cf-nel","max_age":604800}'
+      strict-transport-security: max-age=15552000; includeSubDomains; preload
+      x-content-type-options: nosniff
+      server: cloudflare
+      cf-ray: 654706d76a5d15e4-ARN
+    body:
+      encoding: UTF-8
+      file: no
+      string: |-
+        {
+         "Bars": [{
+          "Volume": 93,
+          "Close": 1.22175,
+          "Low": 1.22154,
+          "High": 1.22175,
+          "Open": 1.22168,
+          "Timestamp": 1621864020000
+         }, {
+          "Volume": 77,
+          "Close": 1.22182,
+          "Low": 1.22172,
+          "High": 1.22187,
+          "Open": 1.22175,
+          "Timestamp": 1621864080000
+         }, {
+          "Volume": 71,
+          "Close": 1.22195,
+          "Low": 1.22175,
+          "High": 1.22195,
+          "Open": 1.22181,
+          "Timestamp": 1621864140000
+         }, {
+          "Volume": 56,
+          "Close": 1.22205,
+          "Low": 1.22195,
+          "High": 1.22214,
+          "Open": 1.22195,
+          "Timestamp": 1621864200000
+         }, {
+          "Volume": 109,
+          "Close": 1.22215,
+          "Low": 1.222,
+          "High": 1.22225,
+          "Open": 1.22206,
+          "Timestamp": 1621864260000
+         }, {
+          "Volume": 70,
+          "Close": 1.22203,
+          "Low": 1.222,
+          "High": 1.22221,
+          "Open": 1.22214,
+          "Timestamp": 1621864320000
+         }, {
+          "Volume": 83,
+          "Close": 1.22208,
+          "Low": 1.22203,
+          "High": 1.22215,
+          "Open": 1.22204,
+          "Timestamp": 1621864380000
+         }, {
+          "Volume": 63,
+          "Close": 1.22216,
+          "Low": 1.22207,
+          "High": 1.22219,
+          "Open": 1.22211,
+          "Timestamp": 1621864440000
+         }, {
+          "Volume": 55,
+          "Close": 1.22205,
+          "Low": 1.22203,
+          "High": 1.22218,
+          "Open": 1.22217,
+          "Timestamp": 1621864500000
+         }, {
+          "Volume": 26,
+          "Close": 1.2219,
+          "Low": 1.2219,
+          "High": 1.22205,
+          "Open": 1.22203,
+          "Timestamp": 1621864560000
+         }],
+         "Symbol": "EURUSD"
+        }
+  recorded_at: 2021-05-24 13:56:19 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.8.0

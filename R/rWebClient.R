@@ -274,6 +274,7 @@ RTTWebClient$methods(
 
     # nonScienceFormat <- options(scipen = 999)
     # on.exit(options(nonScienceFormat))
+    withr::local_options(list(scipen = 999))
     address <- .self$web_api_address
     if(!grepl("^https://", address))
       address <- paste0("https://", address)
@@ -317,6 +318,7 @@ RTTWebClient$methods(
 
     # nonScienceFormat <- options(scipen = 999)
     # on.exit(options(nonScienceFormat))
+    withr::local_options(list(scipen = 999))
     address <- .self$web_api_address
     if(!grepl("^https://", address))
       address <- paste0("https://", address)
@@ -383,7 +385,7 @@ InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L,
 
 
 #' RTTWebApiHost
-#' @name WebClient
+#' @name RTTWebApiHost
 #' @field client. RTTWebClient obj.
 RTTWebApiHost <- setRefClass("RTTWebApiHost",
                             fields = list(client = "RTTWebClient"),
@@ -461,7 +463,7 @@ RTTWebApiHost$methods(
 )
 
 #'Get Ticks History
-#' @name GetTicksRawMethod
+#' @name GetTickHistory
 #' @param symbol. A character. Symbol Name.
 #' @param startTime a POSIXct obj. Start Time in UTC.
 #' @param endTime a POSIXct obj. End Time in UTC.
