@@ -25,7 +25,11 @@ test_that("Is Last 10 Bars right format", {
   }
   bars <- ttPublicClient$GetBarRawMethod("EURUSD", "Bid", "M1", reqTimeInMS, count = -10)
   expect_equal(typeof(bars), "list")
-  # expect_true(is.data.table(bars))
+  expect_true(all(bars$Low <= bars$Open &&
+                    bars$Low <= bars$Close &&
+                    bars$Low <= bars$High &&
+                    bars$High >= bars$Open &&
+                    bars$High >= bars$Close))
   barsColNames <- colnames(bars)
   expect_identical(barsColNames, c("Volume", "Close", "Low", "High", "Open", "Timestamp"))
 })
@@ -57,10 +61,6 @@ test_that("Is Last 10 ticks right format", {
   # expect_true(is.data.table(ticks))
   ticksColNames <- colnames(ticks)
   expect_identical(ticksColNames, c("Timestamp", "BidPrice", "BidVolume", "BidType","AskPrice","AskVolume", "AskType"))
-})
-  expect_identical(barsColNames, c("Timestamp", "Open", "Low", "High", "Close", "Volume"))
-
-
 })
 
 test_that("Is Last 10 ticks right format", {
