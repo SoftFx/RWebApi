@@ -14,167 +14,167 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Mon, 24 May 2021 18:08:14 GMT
+      date: Thu, 10 Jun 2021 16:09:51 GMT
       content-type: application/json; charset=utf-8
-      content-length: '278'
+      content-length: '277'
       connection: keep-alive
       content-encoding: gzip
       cf-cache-status: DYNAMIC
-      cf-request-id: 0a41293be600000024b0b1b000000001
+      cf-request-id: 0a9848f5da0000504fcf033000000001
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=NpPfzC%2BnPnXRYP7MUKnhQtHAz16nB9o2aPoQOoZp7h8LtHonk6AxXLNc0Fp02i08Q8ticrwHPCauThckwTNBFDJOI%2BXxZUuVUTWE5fe7IumaiiZnjJAtxSh1iQu%2BHTKEUZX7fZv87h1q"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=%2Ffl81LrR56wzxn1lOV5NIbjgGpB4Py%2F3LyKOSuR3f3gtDLqd1fqvB7Y620cJ0NdEQ42QZp1IeSDU48fxq3cR5xCbLbIHmh%2B2C5ON4uKE1AWpj6Pqxipr5LcnzUgLP%2FCNe0heVH3%2BpXnH"}],"group":"cf-nel","max_age":604800}'
       nel: '{"report_to":"cf-nel","max_age":604800}'
       strict-transport-security: max-age=15552000; includeSubDomains; preload
       x-content-type-options: nosniff
       server: cloudflare
-      cf-ray: 654877d96d5c0024-WAW
+      cf-ray: 65d3ddcfce50504f-WAW
     body:
       encoding: UTF-8
       file: no
       string: |-
         {
          "Ticks": [{
-          "Timestamp": 1621879659142,
+          "Timestamp": 1623341383979,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22152,
+           "Volume": 5300000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22155,
+           "Volume": 374000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879660196,
+          "Timestamp": 1623341384868,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22154,
+           "Volume": 4500000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 374000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879674630,
+          "Timestamp": 1623341385551,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22153,
+           "Volume": 4500000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22156,
+           "Volume": 373000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879681536,
+          "Timestamp": 1623341386168,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22154,
+           "Volume": 2500000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 373000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879682446,
+          "Timestamp": 1623341389921,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 2500000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.2216,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879682841,
+          "Timestamp": 1623341390263,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22155,
+           "Volume": 1000000,
+           "Price": 1.21677,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879683040,
+          "Timestamp": 1623341390478,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22154,
+           "Volume": 2500000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879683442,
+          "Timestamp": 1623341390918,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22155,
+           "Volume": 2000000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22158,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879684443,
+          "Timestamp": 1623341391218,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22154,
+           "Volume": 4000000,
+           "Price": 1.21676,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22157,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1621879692764,
+          "Timestamp": 1623341391270,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 200000,
-           "Price": 1.22153,
+           "Volume": 1000000,
+           "Price": 1.21677,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 200000,
-           "Price": 1.22156,
+           "Volume": 372000,
+           "Price": 1.21678,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }],
          "Symbol": "EURUSD"
         }
-  recorded_at: 2021-05-24 18:08:14 GMT
+  recorded_at: 2021-06-10 16:09:51 GMT
   recorded_with: vcr/0.6.0, webmockr/0.8.0
