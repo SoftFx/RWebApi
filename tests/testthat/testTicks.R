@@ -1,14 +1,15 @@
+
 ttPublicClient <- InitPublicWebClient(server = "ttlivewebapi.fxopen.com")
-
-
 test_that("Is Last 10 Ticks right format", {
-  skip_on_cran()
+  # skip_on_cran()
   if(requireNamespace("lubridate", quietly = TRUE)){
     reqTimeInMS <- round(as.double(lubridate::now("UTC")) * 1000)
   }else{
     reqTimeInMS <- 0
   }
-  ticks <- ttPublicClient$GetTicksRawMethod("EURUSD", reqTimeInMS, count = -10)
+  vcr::use_cassette("Public_client_last10Ticks", {
+    ticks <- ttPublicClient$GetTicksRawMethod("EURUSD", reqTimeInMS, count = -10)
+  })
   expect_equal(typeof(ticks), "list")
   # expect_true(is.data.table(ticks))
   ticksColNames <- colnames(ticks)
@@ -17,44 +18,79 @@ test_that("Is Last 10 Ticks right format", {
 })
 
 test_that("Is Last 10 Bars right format", {
-  skip_on_cran()
+  # skip_on_cran()
   if(requireNamespace("lubridate", quietly = TRUE)){
     reqTimeInMS <- round(as.double(lubridate::now("UTC")) * 1000)
   }else{
     reqTimeInMS <- 0
   }
-  bars <- ttPublicClient$GetBarRawMethod("EURUSD", "Bid", "M1", reqTimeInMS, count = -10)
+  vcr::use_cassette("Public_client_last10M1Bars", {
+    bars <- ttPublicClient$GetBarRawMethod("EURUSD", "Bid", "M1", reqTimeInMS, count = -10)
+  })
   expect_equal(typeof(bars), "list")
-  # expect_true(is.data.table(bars))
+
+  expect_true(all(bars$Low <= bars$Open &&
+                    bars$Low <= bars$Close &&
+                    bars$Low <= bars$High &&
+                    bars$High >= bars$Open &&
+                    bars$High >= bars$Close))
+
   barsColNames <- colnames(bars)
   expect_identical(barsColNames, c("Volume", "Close", "Low", "High", "Open", "Timestamp"))
 })
 
-rhost <- InitRTTWebApiHost()
+rhost <- InitRTTWebApiHost(server = "ttlivewebapi.fxopen.com")
 test_that("Is Last 10 Bars right format", {
-  skip_on_cran()
+  # skip_on_cran()
   if(requireNamespace("lubridate", quietly = TRUE)){
     reqTime <- lubridate::now("UTC")
   }else{
     reqTime <- 0
   }
-  bars <- rhost$GetBarsHistory("EURUSD", "Bid", "M1", reqTime, reqTime, count = -10)
+  vcr::use_cassette("Rhost_last10M1Bars", {
+    bars <- rhost$GetBarsHistory("EURUSD", "Bid", "M1", reqTime, reqTime, count = -10)
+  })
   expect_equal(typeof(bars), "list")
+  expect_true(all(bars$Low <= bars$Open &&
+                    bars$Low <= bars$Close &&
+                    bars$Low <= bars$High &&
+                    bars$High >= bars$Open &&
+                    bars$High >= bars$Close))
   # expect_true(is.data.table(bars))
   barsColNames <- colnames(bars)
-  expect_identical(barsColNames, c("Volume", "Close", "Low", "High", "Open", "Timestamp"))
+  expect_identical(barsColNames, c("Timestamp", "Open", "Low", "High", "Close", "Volume"))
+
+
 })
 
 test_that("Is Last 10 ticks right format", {
-  skip_on_cran()
+  # skip_on_cran()
   if(requireNamespace("lubridate", quietly = TRUE)){
     reqTime <- lubridate::now("UTC")
   }else{
     reqTime <- 0
   }
-  ticks <- rhost$GetTickHistory("EURUSD", reqTime, reqTime, count = -10)
+  vcr::use_cassette("RHost_last10Ticks", {
+    ticks <- rhost$GetTickHistory("EURUSD", reqTime, reqTime, count = -10)
+  })
   expect_equal(typeof(ticks), "list")
   # expect_true(is.data.table(ticks))
   ticksColNames <- colnames(ticks)
-  expect_identical(ticksColNames, c("Timestamp", "BidPrice", "BidVolume", "BidType","AskPrice","AskVolume", "AskType"))
+  expect_identical(ticksColNames, c("Timestamp", "BidPrice", "BidVolume", "BidType", "AskPrice","AskVolume", "AskType"))
 })
+
+test_that("BidAsk is right format", {
+  if(requireNamespace("lubridate", quietly = TRUE)){
+    reqTime <- lubridate::now("UTC")
+  }else{
+    reqTime <- 0
+  }
+  vcr::use_cassette("RHost_last10M1Bars2", {
+    bars <- rhost$GetBarsHistory("EURUSD", "BidAsk", "M1", reqTime, reqTime, count = -10)
+  })
+  expect_equal(typeof(bars), "list")
+  barsColNames <- colnames(bars)
+  expect_identical(barsColNames, c("Timestamp", "BidOpen", "BidLow", "BidHigh", "BidClose", "BidVolume",
+                                   "AskOpen", "AskLow", "AskHigh", "AskClose", "AskVolume"))
+})
+

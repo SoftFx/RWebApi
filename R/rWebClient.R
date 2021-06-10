@@ -32,6 +32,7 @@ GetBars <- function(GetBarMethod, symbol, barsType = "Bid", periodicity = "M1", 
   }
   history[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
   setkey(history, Timestamp)
+  setcolorder(history, c("Timestamp", "Open", "Low", "High", "Close", "Volume"))
   return(history)
 }
 
@@ -73,14 +74,14 @@ GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
   return(history)
 }
 
-GetBidAskBar <- function(GetBarMethod, symbol, periodicity = "M1", startTime, endTime, count) {
-  bidBars <- GetBars(GetBarMethod, symbol, barsType = "Bid", periodicity, startTime, endTime, count)
-  askBars <- GetBars(GetBarMethod, symbol, barsType = "Ask", periodicity, startTime, endTime, count)
-  bidAskBars <- merge(bidBars, askBars)
-  colnames(bidAskBars) <- c("Timestamp", "BidVolume", "BidClose", "BidLow", "BidHigh", "BidOpen",
-                            "AskVolume", "AskClose", "AskLow", "AskHigh", "AskOpen")
-  return(bidAskBars)
-}
+# GetBidAskBar <- function(GetBarMethod, symbol, periodicity = "M1", startTime, endTime, count) {
+#   bidBars <- GetBars(GetBarMethod, symbol, barsType = "Bid", periodicity, startTime, endTime, count)
+#   askBars <- GetBars(GetBarMethod, symbol, barsType = "Ask", periodicity, startTime, endTime, count)
+#   bidAskBars <- merge(bidBars, askBars)
+#   colnames(bidAskBars) <- c("Timestamp", "BidVolume", "BidClose", "BidLow", "BidHigh", "BidOpen",
+#                             "AskVolume", "AskClose", "AskLow", "AskHigh", "AskOpen")
+#   return(bidAskBars)
+# }
 
 # Get current time in ms
 getTimestamp = function() {
@@ -383,7 +384,7 @@ InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L,
 
 
 #' RTTWebApiHost
-#' @name WebClient
+#' @name RTTWebApiHost
 #' @field client. RTTWebClient obj.
 RTTWebApiHost <- setRefClass("RTTWebApiHost",
                             fields = list(client = "RTTWebClient"),
@@ -453,8 +454,19 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0L) {
     "Get Bar History"
-    if(barsType == "Bid" || barasType == "Ask"){
+    if(barsType == "Bid" || barsType == "Ask"){
       return(GetBars(.self$client$GetBarRawMethod, symbol, barsType, periodicity, startTime, endTime, count))
+    }
+    if(barsType == "BidAsk"){
+      bid <- GetBars(.self$client$GetBarRawMethod, symbol, "Bid", periodicity, startTime, endTime, count)
+      ask <- GetBars(.self$client$GetBarRawMethod, symbol, "Ask", periodicity, startTime, endTime, count)
+      res <- merge(bid, ask, by = "Timestamp", all = TRUE)
+      setnames(res, seq_along(res), c("Timestamp", "BidOpen", "BidLow", "BidHigh", "BidClose", "BidVolume",
+                                      "AskOpen", "AskLow", "AskHigh", "AskClose", "AskVolume"))
+      setnafill(res, type=c("locf"), cols=seq_along(res))
+      setnafill(res, type=c("nocb"), cols=seq_along(res))
+      return(res)
+
     }
     stop("Wrong Bar Type")
   }
