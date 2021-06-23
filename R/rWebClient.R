@@ -456,6 +456,7 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetBarsHistory = function(symbol, barsType = "Bid", periodicity = "M1", startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0L) {
     "Get Bar History"
+    symbol <- sapply(symbol, URLencode, reserved = TRUE, USE.NAMES = FALSE)
     if(barsType == "Bid" || barsType == "Ask"){
       return(GetBars(.self$client$GetBarRawMethod, symbol, barsType, periodicity, startTime, endTime, count))
     }
@@ -484,6 +485,7 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetTickHistory = function(symbol, startTime, endTime = as.POSIXct(Sys.Date(), tz = "GMT"), count = 0L) {
     "Get Bar History"
+    symbol <- sapply(symbol, URLencode, reserved = TRUE, USE.NAMES = FALSE)
     return(GetTicks(.self$client$GetTicksRawMethod, symbol, startTime, endTime, count))
   }
 )
