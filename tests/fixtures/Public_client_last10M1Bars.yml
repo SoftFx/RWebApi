@@ -14,97 +14,96 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Thu, 10 Jun 2021 16:09:51 GMT
+      date: Mon, 05 Jul 2021 12:37:17 GMT
       content-type: application/json; charset=utf-8
-      content-length: '305'
+      content-length: '312'
       connection: keep-alive
       content-encoding: gzip
       cf-cache-status: DYNAMIC
-      cf-request-id: 0a9848f68c0000504f76bca000000001
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=SHjImCk6ZQ%2BcWdKKBGxfP7kyX5BVRZw%2BwdUN9D5b%2B7TO355z%2Be7uiq54ZP4FDN2KTERuaFrBz1ZkZFVENkgr5wDrQCFiPSab9WHA3KbISyybBj%2FwBUsDQfq8SbrCaGkBeK3%2BjQmS4igR"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=TricSPnfs%2F%2FQ6kzflCyh3PLWoZRPACHoESAHHL6IhvhiCNaTTRknI4t4gs5GxUVxWnSjDYvKRNd1raefQ7M%2Bw18eH12R2%2BEtEKmju1DOWmh%2BdKyQ4ph%2FLQfZiwyMaSLkij87UceO3I0%2B"}],"group":"cf-nel","max_age":604800}'
       nel: '{"report_to":"cf-nel","max_age":604800}'
       strict-transport-security: max-age=15552000; includeSubDomains; preload
       x-content-type-options: nosniff
       server: cloudflare
-      cf-ray: 65d3ddd0e890504f-WAW
+      cf-ray: 66a0a4ce7eadcbc4-VIE
     body:
       encoding: UTF-8
       file: no
       string: |-
         {
          "Bars": [{
-          "Volume": 308,
-          "Close": 1.21745,
-          "Low": 1.21725,
-          "High": 1.21747,
-          "Open": 1.21727,
-          "Timestamp": 1623340800000
+          "Volume": 280,
+          "Close": 1.18638,
+          "Low": 1.18617,
+          "High": 1.18639,
+          "Open": 1.18618,
+          "Timestamp": 1625488080000
          }, {
-          "Volume": 269,
-          "Close": 1.21738,
-          "Low": 1.21738,
-          "High": 1.2175,
-          "Open": 1.21745,
-          "Timestamp": 1623340860000
+          "Volume": 204,
+          "Close": 1.18624,
+          "Low": 1.18623,
+          "High": 1.18638,
+          "Open": 1.18638,
+          "Timestamp": 1625488140000
          }, {
-          "Volume": 407,
-          "Close": 1.21722,
-          "Low": 1.21721,
-          "High": 1.21749,
-          "Open": 1.21738,
-          "Timestamp": 1623340920000
+          "Volume": 212,
+          "Close": 1.18642,
+          "Low": 1.18624,
+          "High": 1.18642,
+          "Open": 1.18624,
+          "Timestamp": 1625488200000
          }, {
-          "Volume": 343,
-          "Close": 1.21715,
-          "Low": 1.21712,
-          "High": 1.21732,
-          "Open": 1.21722,
-          "Timestamp": 1623340980000
+          "Volume": 229,
+          "Close": 1.18639,
+          "Low": 1.18634,
+          "High": 1.18643,
+          "Open": 1.18642,
+          "Timestamp": 1625488260000
          }, {
-          "Volume": 357,
-          "Close": 1.21706,
-          "Low": 1.21701,
-          "High": 1.21725,
-          "Open": 1.21716,
-          "Timestamp": 1623341040000
+          "Volume": 275,
+          "Close": 1.18648,
+          "Low": 1.18639,
+          "High": 1.18654,
+          "Open": 1.18639,
+          "Timestamp": 1625488320000
          }, {
-          "Volume": 287,
-          "Close": 1.21727,
-          "Low": 1.21705,
-          "High": 1.21733,
-          "Open": 1.21706,
-          "Timestamp": 1623341100000
+          "Volume": 199,
+          "Close": 1.18638,
+          "Low": 1.18636,
+          "High": 1.18649,
+          "Open": 1.18648,
+          "Timestamp": 1625488380000
          }, {
-          "Volume": 261,
-          "Close": 1.21701,
-          "Low": 1.217,
-          "High": 1.21727,
-          "Open": 1.21726,
-          "Timestamp": 1623341160000
+          "Volume": 292,
+          "Close": 1.18643,
+          "Low": 1.18638,
+          "High": 1.18653,
+          "Open": 1.18638,
+          "Timestamp": 1625488440000
          }, {
-          "Volume": 281,
-          "Close": 1.21697,
-          "Low": 1.21691,
-          "High": 1.21705,
-          "Open": 1.217,
-          "Timestamp": 1623341220000
+          "Volume": 338,
+          "Close": 1.18655,
+          "Low": 1.18642,
+          "High": 1.18662,
+          "Open": 1.18643,
+          "Timestamp": 1625488500000
          }, {
-          "Volume": 241,
-          "Close": 1.21696,
-          "Low": 1.21695,
-          "High": 1.21705,
-          "Open": 1.21697,
-          "Timestamp": 1623341280000
+          "Volume": 196,
+          "Close": 1.18659,
+          "Low": 1.18653,
+          "High": 1.1866,
+          "Open": 1.18654,
+          "Timestamp": 1625488560000
          }, {
-          "Volume": 360,
-          "Close": 1.21676,
-          "Low": 1.21674,
-          "High": 1.21705,
-          "Open": 1.21696,
-          "Timestamp": 1623341340000
+          "Volume": 62,
+          "Close": 1.1865,
+          "Low": 1.1865,
+          "High": 1.18659,
+          "Open": 1.18659,
+          "Timestamp": 1625488620000
          }],
          "Symbol": "EURUSD"
         }
-  recorded_at: 2021-06-10 16:09:51 GMT
+  recorded_at: 2021-07-05 12:37:17 GMT
   recorded_with: vcr/0.6.0, webmockr/0.8.0

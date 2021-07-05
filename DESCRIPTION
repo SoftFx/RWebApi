@@ -4,7 +4,7 @@ Title: Web Client to 'TickTrader'
 Version: 0.1.2
 Authors@R: c(person("Yury","Maisiayonak", role=c("aut","cre"), email="yury.maisiayonak@soft-fx.lv"))
 Description: R Web Client to 'TickTrader' platform. Provides you access to 'TickTrader' platform through Web API <https://ttlivewebapi.fxopen.net:8443/api/doc/index>.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.3.0)
 License: GPL-2
 Encoding: UTF-8
 Imports: 

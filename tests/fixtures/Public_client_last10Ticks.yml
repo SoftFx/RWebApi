@@ -14,167 +14,166 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Thu, 10 Jun 2021 16:09:51 GMT
+      date: Mon, 05 Jul 2021 12:37:17 GMT
       content-type: application/json; charset=utf-8
-      content-length: '277'
+      content-length: '270'
       connection: keep-alive
       content-encoding: gzip
       cf-cache-status: DYNAMIC
-      cf-request-id: 0a9848f5da0000504fcf033000000001
       expect-ct: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
-      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=%2Ffl81LrR56wzxn1lOV5NIbjgGpB4Py%2F3LyKOSuR3f3gtDLqd1fqvB7Y620cJ0NdEQ42QZp1IeSDU48fxq3cR5xCbLbIHmh%2B2C5ON4uKE1AWpj6Pqxipr5LcnzUgLP%2FCNe0heVH3%2BpXnH"}],"group":"cf-nel","max_age":604800}'
+      report-to: '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v2?s=5kNlGgDQsJ7NpvJHQxJSEYIShVYoDUDBxPqO3ktalgYv40EHReN3jZOMXwyAm9NSAyqsUNCEJHrnOkl6H%2FQqrBlul3XbPQvHLSlU%2Fm98X6fba80NwOSaDcLchfjCg1ZTlHheLU%2BnTGAD"}],"group":"cf-nel","max_age":604800}'
       nel: '{"report_to":"cf-nel","max_age":604800}'
       strict-transport-security: max-age=15552000; includeSubDomains; preload
       x-content-type-options: nosniff
       server: cloudflare
-      cf-ray: 65d3ddcfce50504f-WAW
+      cf-ray: 66a0a4cc4b98cbc4-VIE
     body:
       encoding: UTF-8
       file: no
       string: |-
         {
          "Ticks": [{
-          "Timestamp": 1623341383979,
+          "Timestamp": 1625488630675,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 5300000,
-           "Price": 1.21676,
+           "Volume": 33000,
+           "Price": 1.1865,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 374000,
-           "Price": 1.21678,
+           "Volume": 3500000,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341384868,
+          "Timestamp": 1625488631117,
           "IndicativeTick": false,
           "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
            "Volume": 4500000,
-           "Price": 1.21676,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 374000,
-           "Price": 1.21678,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341385551,
+          "Timestamp": 1625488631696,
           "IndicativeTick": false,
           "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
+           "Volume": 3500000,
+           "Price": 1.18652,
+           "Type": "Ask"
+          },
+          "TickType": "Normal"
+         }, {
+          "Timestamp": 1625488631984,
+          "IndicativeTick": false,
+          "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
            "Volume": 4500000,
-           "Price": 1.21676,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 373000,
-           "Price": 1.21678,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341386168,
+          "Timestamp": 1625488632252,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 2500000,
-           "Price": 1.21676,
+           "Volume": 33000,
+           "Price": 1.1865,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 373000,
-           "Price": 1.21678,
+           "Volume": 3500000,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341389921,
+          "Timestamp": 1625488633608,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 2500000,
-           "Price": 1.21676,
+           "Volume": 33000,
+           "Price": 1.1865,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
+           "Volume": 4500000,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341390263,
+          "Timestamp": 1625488633679,
           "IndicativeTick": false,
           "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
+           "Volume": 3500000,
+           "Price": 1.18652,
+           "Type": "Ask"
+          },
+          "TickType": "Normal"
+         }, {
+          "Timestamp": 1625488633681,
+          "IndicativeTick": false,
+          "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
+           "Volume": 500000,
+           "Price": 1.18651,
+           "Type": "Ask"
+          },
+          "TickType": "Normal"
+         }, {
+          "Timestamp": 1625488633789,
+          "IndicativeTick": false,
+          "BestBid": {
+           "Volume": 33000,
+           "Price": 1.1865,
+           "Type": "Bid"
+          },
+          "BestAsk": {
            "Volume": 1000000,
-           "Price": 1.21677,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
+           "Price": 1.18651,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }, {
-          "Timestamp": 1623341390478,
+          "Timestamp": 1625488636006,
           "IndicativeTick": false,
           "BestBid": {
-           "Volume": 2500000,
-           "Price": 1.21676,
+           "Volume": 33000,
+           "Price": 1.1865,
            "Type": "Bid"
           },
           "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
-           "Type": "Ask"
-          },
-          "TickType": "Normal"
-         }, {
-          "Timestamp": 1623341390918,
-          "IndicativeTick": false,
-          "BestBid": {
-           "Volume": 2000000,
-           "Price": 1.21676,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
-           "Type": "Ask"
-          },
-          "TickType": "Normal"
-         }, {
-          "Timestamp": 1623341391218,
-          "IndicativeTick": false,
-          "BestBid": {
-           "Volume": 4000000,
-           "Price": 1.21676,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
-           "Type": "Ask"
-          },
-          "TickType": "Normal"
-         }, {
-          "Timestamp": 1623341391270,
-          "IndicativeTick": false,
-          "BestBid": {
-           "Volume": 1000000,
-           "Price": 1.21677,
-           "Type": "Bid"
-          },
-          "BestAsk": {
-           "Volume": 372000,
-           "Price": 1.21678,
+           "Volume": 3500000,
+           "Price": 1.18652,
            "Type": "Ask"
           },
           "TickType": "Normal"
          }],
          "Symbol": "EURUSD"
         }
-  recorded_at: 2021-06-10 16:09:51 GMT
+  recorded_at: 2021-07-05 12:37:17 GMT
   recorded_with: vcr/0.6.0, webmockr/0.8.0

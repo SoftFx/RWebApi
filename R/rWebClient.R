@@ -97,13 +97,13 @@ getHMACHeaders = function(url, id, key, secret, method = "GET", body = "") {
   return(auth_value)
 }
 
-#' RTTWebClient Class
-#' @name RTTWebClient
-#' @field web_api_address. Server address. Character
-#' @field web_api_port. Port. Integer
-#' @field web_api_id. Web Api Id. Character
-#' @field web_api_key. Web Api Key. Character
-#' @field web_api_secrer. Web Api Secret. Character
+#RTTWebClient Class
+#@name RTTWebClient
+#@field web_api_address. Server address. Character
+#@field web_api_port. Port. Integer
+#@field web_api_id. Web Api Id. Character
+#@field web_api_key. Web Api Key. Character
+#@field web_api_secrer. Web Api Secret. Character
 #' @import data.table
 #' @import jsonlite
 #' @import httr
@@ -118,12 +118,12 @@ RTTWebClient <- setRefClass("RTTWebClient",
 )
 
 
-#' Get All Dividend
-#' @name GetDividendsRawMethod
-#' @return a data.table with dividends.
+#Get All Dividend
+#@name GetDividendsRawMethod
+#@return a data.table with dividends.
 RTTWebClient$methods(
   GetDividendsRawMethod = function() {
-    "Get All Dividend"
+    #"Get All Dividend"
     address <- .self$web_api_address
     if(!grepl("^https://", address))
       address <- paste0("https://", address)
@@ -152,9 +152,9 @@ RTTWebClient$methods(
   }
 )
 
-#' Get All Current Quotes
-#' @name GetCurrentQuotesRawMethod
-#' @return a data.table with current quotes
+# #' Get All Current Quotes
+# #' @name GetCurrentQuotesRawMethod
+# #' @return a data.table with current quotes
 RTTWebClient$methods(
   GetCurrentQuotesRawMethod = function() {
     "Get All Current Quotes"
@@ -182,16 +182,16 @@ RTTWebClient$methods(
     }
     # data <- content(connect, "text", encoding = "UTF-8")
     ticks <- fromJSON(data)
-    ticks <- data.table("TimeStamp" = ticks$Timestamp, "Symbol" = ticks$Symbol, "BidPrice" = ticks$BestBid$Price,
+    ticks <- data.table("Timestamp" = ticks$Timestamp, "Symbol" = ticks$Symbol, "BidPrice" = ticks$BestBid$Price,
                         "BidVolume" = ticks$BestBid$Volume, "BidType" = ticks$BestBid$Type,  "AskPrice" = ticks$BestAsk$Price,
                         "AskVolume" = ticks$BestAsk$Volume, "AskType" = ticks$BestAsk$Type)
     return(ticks)
   }
 )
 
-#' Get All Current Quotes
-#' @name GetPipsValueRawMethod
-#' @return a data.table with current quotes
+# #' Get All Current Quotes
+# #' @name GetPipsValueRawMethod
+# #' @return a data.table with current quotes
 RTTWebClient$methods(
   GetPipsValueRawMethod = function(targetCurrency, symbols) {
     "Get Pip Value"
@@ -227,9 +227,9 @@ RTTWebClient$methods(
   }
 )
 
-#' Get All Symbols
-#' @name GetSymbolsInfoRawMethod
-#' @return data.table with symbol info
+# #' Get All Symbols
+# #' @name GetSymbolsInfoRawMethod
+# #' @return data.table with symbol info
 RTTWebClient$methods(
   GetSymbolsInfoRawMethod = function(){
     "Get All Symbols"
@@ -261,14 +261,14 @@ RTTWebClient$methods(
   }
 )
 
-#' Get Bar History
-#' @name GetBarRawMethod
-#' @param symbol a character. Symbol Name.
-#' @param barsType. a character. Bars Type. One from c("Ask", "Bid").
-#' @param periodicity. a character. Periodicity. From c("S1", "S10", "M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1","MN1")
-#' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
-#' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
-#' @return data.table with Bar Info
+# #' Get Bar History
+# #' @name GetBarRawMethod
+# #' @param symbol a character. Symbol Name.
+# #' @param barsType. a character. Bars Type. One from c("Ask", "Bid").
+# #' @param periodicity. a character. Periodicity. From c("S1", "S10", "M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1","MN1")
+# #' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
+# #' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
+# #' @return data.table with Bar Info
 RTTWebClient$methods(
   GetBarRawMethod = function(symbol, barsType, periodicity, startTimeMs, count){
     "Get Bar History"
@@ -307,12 +307,12 @@ RTTWebClient$methods(
   }
 )
 
-#'Get Ticks History
-#' @name GetTicksRawMethod
-#' @param symbol. A character. Symbol Name.
-#' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
-#' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
-#' @return data.table with Ticks Info.
+# #'Get Ticks History
+# #' @name GetTicksRawMethod
+# #' @param symbol. A character. Symbol Name.
+# #' @param startTimeMs. Long numeric. Timestamp from 1970-01-01 in ms.
+# #' @param count. Integer. Count of returned Bars from startTimeMs. Max is 1000. Can be negative.
+# #' @return data.table with Ticks Info.
 RTTWebClient$methods(
   GetTicksRawMethod = function(symbol, startTimeMs, count){
     "Get Ticks History"
@@ -355,26 +355,24 @@ RTTWebClient$methods(
                       "AskVolume" = ticks$BestAsk$Volume, "AskType" = ticks$BestAsk$Type))
   }
 )
-#' Init Public Web Client Obj
-#'@name InitPublicWebClient
-#'@param server a character. Web Address.
-#'@param port an integer. Port Number. Default is 8443
-#'@return rTTWebClient obj.
-#'@export
+# #' Init Public Web Client Obj
+# #'@name InitPublicWebClient
+# #'@param server a character. Web Address.
+# #'@param port an integer. Port Number. Default is 8443
+# #'@return rTTWebClient obj.
 InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L) {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port))
 }
 
-#' Init Private Web Client Obj
-#'@name InitPrivateWebClient
-#'@param server a character. Web Address.
-#'@param port an integer. Port Number. Default is 8443
-#'@param id a character. HMAC client id.
-#'@param key a character. HMAC client key.
-#'@param secret a character. HMAC secret key.
-#'@return rTTWebClient obj.
-#'@export
+# #' Init Private Web Client Obj
+# #'@name InitPrivateWebClient
+# #'@param server a character. Web Address.
+# #'@param port an integer. Port Number. Default is 8443
+# #'@param id a character. HMAC client id.
+# #'@param key a character. HMAC client key.
+# #'@param secret a character. HMAC secret key.
+# #'@return rTTWebClient obj.
 InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = "", key = "", secret = "") {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port,
@@ -415,6 +413,8 @@ RTTWebApiHost$methods(
     "Get All Symbols"
     symbols <- .self$client$GetSymbolsInfoRawMethod()
     symbols[!grepl("_L$", Symbol), PipsValue := .self$GetPipsValue("USD", Symbol)[,(Value)]]
+    currentQuotes <- .self$GetCurrentQuotes()
+    symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "BidPrice", "BidVolume", "AskPrice", "AskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
     return(symbols)
   }
 )
@@ -426,7 +426,9 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetCurrentQuotes = function() {
     "Get All Current Quotes"
-    return(.self$client$GetCurrentQuotesRawMethod())
+    currentQuotes <- .self$client$GetCurrentQuotesRawMethod()
+    currentQuotes[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
+    return(currentQuotes)
   }
 )
 
