@@ -414,7 +414,7 @@ RTTWebApiHost$methods(
     symbols <- .self$client$GetSymbolsInfoRawMethod()
     symbols[!grepl("_L$", Symbol), PipsValue := .self$GetPipsValue("USD", Symbol)[,(Value)]]
     currentQuotes <- .self$GetCurrentQuotes()
-    symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "BidPrice", "BidVolume", "AskPrice", "AskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
+    symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "LastBidPrice", "LastBidVolume", "LastAskPrice", "LastAskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
     return(symbols)
   }
 )
