@@ -412,7 +412,7 @@ RTTWebApiHost$methods(
   GetSymbolsInfo = function() {
     "Get All Symbols"
     symbols <- .self$client$GetSymbolsInfoRawMethod()
-    symbols[!grepl("_L$", Symbol), PipsValue := .self$GetPipsValue("USD", Symbol)[,(Value)]]
+    symbols[!grepl("_L$", Symbol), PipsValue := tryCatch(.self$GetPipsValue("USD", Symbol)[,(Value)], error = function(e) {print(e); as.numeric(NA)})]
     currentQuotes <- .self$GetCurrentQuotes()
     symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "LastBidPrice", "LastBidVolume", "LastAskPrice", "LastAskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
     return(symbols)
