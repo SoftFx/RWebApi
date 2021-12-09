@@ -6,7 +6,7 @@ GetBars <- function(GetBarMethod, symbol, barsType = "Bid", periodicity = "M1", 
   maxCount <- 1000
   if(count == 0) {
     repeat{
-      bars <- GetBarMethod(symbol, barsType, periodicity, tempStartTime, maxCount)
+      bars <- Throttling(GetBarMethod, symbol, barsType, periodicity, tempStartTime, maxCount)
       lastHistoryNoteTimestamp <- history[.N, Timestamp]
       excludeIndex <-ifelse(length(lastHistoryNoteTimestamp) <= 0, numeric(0), bars[Timestamp==lastHistoryNoteTimestamp,which=T])
       if(!is.na(excludeIndex))
@@ -25,9 +25,9 @@ GetBars <- function(GetBarMethod, symbol, barsType = "Bid", periodicity = "M1", 
     }
   }else{
     if(abs(count) < maxCount){
-      history <- GetBarMethod(symbol, barsType, periodicity, tempStartTime, count)
+      history <- Throttling(GetBarMethod, symbol, barsType, periodicity, tempStartTime, count)
     }else{
-      history <- GetBarMethod(symbol, barsType, periodicity, tempStartTime, maxCount * sign(count))
+      history <- Throttling(GetBarMethod, symbol, barsType, periodicity, tempStartTime, maxCount * sign(count))
     }
   }
   history[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
@@ -45,7 +45,7 @@ GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
   maxCount <- 1000
   if(count == 0) {
     repeat{
-      ticks <- GetTickMethod(symbol, tempStartTime, maxCount)
+      ticks <- Throttling(GetTickMethod, symbol, tempStartTime, maxCount)
       lastHistoryNoteTimestamp <- history[.N, Timestamp]
       excludeIndex <-ifelse(length(lastHistoryNoteTimestamp) <= 0, numeric(0), ticks[Timestamp==lastHistoryNoteTimestamp, which=TRUE])
       if(!is.na(excludeIndex))
@@ -64,14 +64,34 @@ GetTicks <- function(GetTickMethod, symbol, startTime, endTime, count) {
     }
   }else{
     if(abs(count) < maxCount){
-      history <- GetTickMethod(symbol, tempStartTime, count)
+      history <- Throttling(GetTickMethod, symbol, tempStartTime, count)
     }else{
-      history <- GetTickMethod(symbol, tempStartTime, maxCount * sign(count))
+      history <- Throttling(GetTickMethod, symbol, tempStartTime, maxCount * sign(count))
     }
   }
   history[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
   setkey(history, Timestamp)
   return(history)
+}
+
+Throttling <- function(func, ..., N = 10, sleepTimeSec = 1, errorPattern = "429"){
+  res <- NULL
+  func <- match.fun(func)
+  for(i in 1:N){
+    res <- tryCatch({
+      return(func(...))
+      # return(stop(errorPattern))
+    }, error = function(e){
+      print(paste( i, "-", e$message))
+      if(!grepl(errorPattern, e$message, fixed = TRUE))
+        stop(e$message)
+      print(paste("Sleeping", sleepTimeSec, "sec"))
+      Sys.sleep(sleepTimeSec)
+    })
+  }
+  if(length(res) == 0)
+    stop(paste("More than", N, "attempts with errors matchs the pattern", errorPattern))
+  return(res)
 }
 
 # GetBidAskBar <- function(GetBarMethod, symbol, periodicity = "M1", startTime, endTime, count) {
@@ -401,7 +421,8 @@ RTTWebApiHost$methods(
   GetDividends = function()
   {
     "Get All Dividend"
-    return(.self$client$GetDividendsRawMethod())
+    # return(.self$client$GetDividendsRawMethod())
+    return(Throttling(.self$client$GetDividendsRawMethod))
   }
 )
 
@@ -411,9 +432,11 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetSymbolsInfo = function() {
     "Get All Symbols"
-    symbols <- .self$client$GetSymbolsInfoRawMethod()
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    symbols <- Throttling(.self$client$GetSymbolsInfoRawMethod)
     symbols[!grepl("_L$", Symbol), PipsValue := tryCatch(.self$GetPipsValue("USD", Symbol)[,(Value)], error = function(e) {print(e); as.numeric(NA)})]
     currentQuotes <- .self$GetCurrentQuotes()
+
     symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "LastBidPrice", "LastBidVolume", "LastAskPrice", "LastAskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
     return(symbols)
   }
@@ -426,7 +449,8 @@ RTTWebApiHost$methods(
 RTTWebApiHost$methods(
   GetCurrentQuotes = function() {
     "Get All Current Quotes"
-    currentQuotes <- .self$client$GetCurrentQuotesRawMethod()
+    # currentQuotes <- .self$client$GetCurrentQuotesRawMethod()
+    currentQuotes <- Throttling(.self$client$GetCurrentQuotesRawMethod)
     currentQuotes[, Timestamp := as.POSIXct(Timestamp / 1000, origin = "1970-01-01", tz = "GMT")]
     return(currentQuotes)
   }
@@ -439,7 +463,8 @@ RTTWebApiHost$methods(
   GetPipsValue = function(targetCurrency, symbols) {
     "Get Pips Value"
     symbols <- paste(sapply(symbols, URLencode, reserved = TRUE, USE.NAMES = FALSE), collapse = URLencode(" ", reserved = FALSE))
-    pipsValue <- .self$client$GetPipsValueRawMethod(targetCurrency, symbols)
+    # pipsValue <- .self$client$GetPipsValueRawMethod(targetCurrency, symbols)
+    pipsValue <- Throttling(.self$client$GetPipsValueRawMethod, targetCurrency, symbols)
     setcolorder(pipsValue, c(2,1))
     setkey(pipsValue, "Symbol")
     return(pipsValue)

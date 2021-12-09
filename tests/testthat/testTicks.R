@@ -41,10 +41,10 @@ test_that("Is Last 10 Bars right format", {
     bars <- rhost$GetBarsHistory("EURUSD", "Bid", "M1", reqTime, reqTime, count = -10)
   })
   expect_equal(typeof(bars), "list")
-  expect_true(all(bars$Low <= bars$Open &&
-                    bars$Low <= bars$Close &&
-                    bars$Low <= bars$High &&
-                    bars$High >= bars$Open &&
+  expect_true(all(bars$Low <= bars$Open &
+                    bars$Low <= bars$Close &
+                    bars$Low <= bars$High &
+                    bars$High >= bars$Open &
                     bars$High >= bars$Close))
   barsColNames <- colnames(bars)
   expect_identical(barsColNames, c("Timestamp", "Open", "Low", "High","Close", "Volume"))
