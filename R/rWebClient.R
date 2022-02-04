@@ -281,6 +281,40 @@ RTTWebClient$methods(
   }
 )
 
+# #' Get All Currency Info
+# #' @name GetCurrencyInfoRawMethod
+# #' @return data.table with currency info
+RTTWebClient$methods(
+  GetCurrencyInfoRawMethod = function(){
+    "Get All Symbols"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/currency")
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      url_rel <- paste("/api/v2/public/currency")
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
+
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    data = fromJSON(data)
+    currency <- as.data.table(data)
+    setkey(currency, "Name")
+    return(currency)
+  }
+)
+
 # #' Get Bar History
 # #' @name GetBarRawMethod
 # #' @param symbol a character. Symbol Name.
@@ -420,9 +454,11 @@ RTTWebApiHost <- setRefClass("RTTWebApiHost",
 RTTWebApiHost$methods(
   GetDividends = function()
   {
-    "Get All Dividend"
+    "Get All Dividends"
     # return(.self$client$GetDividendsRawMethod())
-    return(Throttling(.self$client$GetDividendsRawMethod))
+    dividends <- Throttling(.self$client$GetDividendsRawMethod)
+    dividends[, Time := as.POSIXct(Time / 1000, origin = "1970-01-01", tz = "GMT")]
+    return(dividends)
   }
 )
 
@@ -442,6 +478,16 @@ RTTWebApiHost$methods(
   }
 )
 
+#' Get All Currency
+#' @name GetCurrencyInfo
+#' @return data.table with currency info
+RTTWebApiHost$methods(
+  GetCurrencyInfo = function() {
+    "Get All Currencies"
+    currency <- Throttling(.self$client$GetCurrencyInfoRawMethod)
+    return(currency)
+  }
+)
 
 #' Get All Current Quotes
 #' @name GetCurrentQuotes
@@ -458,7 +504,9 @@ RTTWebApiHost$methods(
 
 #' Get Pips Value
 #' @name GetPipsValue
-#' @return a data.table with current quotes
+#' @param targetCurrency a character. Currency Name.
+#' @param symbols a character vectors. Symbols vector.
+#' @return a data.table with pips value in targetCurrency for every symbol in symbols vector
 RTTWebApiHost$methods(
   GetPipsValue = function(targetCurrency, symbols) {
     "Get Pips Value"
