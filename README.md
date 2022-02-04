@@ -8,7 +8,7 @@ This package use httr, jsonlite, data.table r libraries. Please install them bef
 ```
 if(!require(devtools)) {install.packages("devtools"); library(devtools)}
 if(require(RTTWebClient)) {detach("package:RTTWebClient", unload=TRUE); remove.packages("RTTWebClient")}
-install_github("SoftFx/TTWebClient-R",ref = "dev")	 
+install_github("SoftFx/TTWebClient-R")	 
 
 ```
 
@@ -28,7 +28,7 @@ library(RTTWebClient)
 options(scipen = 999)
 publicClient <- InitRTTWebApiHost(server = "ttlivewebapi.fxopen.com")  #for public interface
 #or use (just for example) for private interface 
-symbols <- connection$GetPublicSymbolInfo()
+#privateClient <- InitRTTWebApiHost(server = "ttlivewebapi.fxopen.com", id = rfdfddfsdfs, key = fdfsdfs, secret = fdfsdfsdf) 
 symbols <- publicClient$GetSymbolsInfo()
 pipsValue <- publicClient$GetPipsValue("USD", c("EURUSD", "USDCAD"))
 bars <- publicClient$GetBarsHistory("EURUSD", "Bid", "M1", Sys.time(), Sys.time(), -1)
@@ -36,7 +36,4 @@ ticks <- publicClient$GetTickHistory("EURUSD", Sys.time(), Sys.time(), -1)
 currentQuotes <- publicClient$GetCurrentQuotes()
 dividends <- publicClient$GetDividends()
 currency <- publicClient$GetCurrencyInfo()
-currentQuotes <- connection$GetPublicCurrentQuotes()
-#Get all symbols 1 tick by timestamp
-ticksByTimestamp <- connection$GetPublicTicksByTimestamp(as.POSIXct(Sys.Date(), tz = "GMT"))
 ```

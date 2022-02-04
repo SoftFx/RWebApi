@@ -1,8 +1,0 @@
-GetDividendsFromWeb     Get All Dividend by private connection
-GetPublicDividendsFromWeb
-                        Get All Dividend by public connection
-RTTWebClient            RTTWebClient Class
-RWebApiClient           Set the server from which the info will be read
-getHMACHeaders          Generate HMAC Headers from
-getTimestamp            Get current time in ms
-ttInitialize            Set the server from which the info will be read
