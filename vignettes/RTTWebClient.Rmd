@@ -74,3 +74,8 @@ print(ttWebApiHost$GetBarsHistory("EURUSD", "Bid","M1", now("UTC") - days(1), no
 ```{r, eval=FALSE}
 print(ttWebApiHost$GetTickHistory("EURUSD",  now("UTC") - days(1), now("UTC")))
 ```
+
+## Get Currency data.table
+```{r, eval=FALSE}
+print(ttWebApiHost$GetCurrencyInfo())
+```

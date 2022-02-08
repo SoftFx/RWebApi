@@ -574,6 +574,7 @@ RTTWebApiHost$methods(
 #'@param secret a character. HMAC secret key.
 #'@return RTTWebApiHost ref class.
 #'@importFrom methods new
+#'@importFrom withr local_options
 #'@export
 InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = NULL, key = NULL, secret = NULL){
   if(length(id) != 0 && length(key) != 0 && length(secret) != 0)
