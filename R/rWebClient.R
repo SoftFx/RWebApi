@@ -464,16 +464,28 @@ RTTWebApiHost$methods(
 
 #' Get All Symbols
 #' @name GetSymbolsInfo
+#' @param getPipsValue a bool. Add PipsValue Info for symbols or not (targetCurrency is USD).
+#' @param getLastPrice a bool. Add LastPrice Info for symbols or not.
 #' @return data.table with symbol info
 RTTWebApiHost$methods(
-  GetSymbolsInfo = function() {
+  GetSymbolsInfo = function(getPipsValue = FALSE, getLastPrice = TRUE) {
     "Get All Symbols"
     # symbols <- .self$client$GetSymbolsInfoRawMethod()
     symbols <- Throttling(.self$client$GetSymbolsInfoRawMethod)
-    symbols[!grepl("_L$", Symbol), PipsValue := tryCatch(.self$GetPipsValue("USD", Symbol)[,(Value)], error = function(e) {print(e); as.numeric(NA)})]
-    currentQuotes <- .self$GetCurrentQuotes()
-
-    symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "LastBidPrice", "LastBidVolume", "LastAskPrice", "LastAskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
+    # symbols[!grepl("_L$", Symbol), PipsValue := tryCatch(.self$GetPipsValue("USD", Symbol)[,(Value)], error = function(e) {print(e); as.numeric(NA)})]
+    if(getPipsValue){
+      notLastSymbols <-  symbols[!grepl("_L$", Symbol), Symbol]
+      pipsValue <- tryCatch(connection$GetPipsValue("USD", notLastSymbols), error = function(e) {print(e); NULL})
+      if(!is.null(pipsValue)){
+        symbols[pipsValue, on = .(Symbol), PipsValue := i.Value]
+      }else{
+        symbols[, PipsValue := as.numeric(NA)]
+      }
+    }
+    if(getLastPrice){
+      currentQuotes <- .self$GetCurrentQuotes()
+      symbols[currentQuotes, on = .(Symbol), c("LastTimeUpdate", "LastBidPrice", "LastBidVolume", "LastAskPrice", "LastAskVolume") := list(i.Timestamp, i.BidPrice, i.BidVolume, i.AskPrice, i.AskVolume)]
+    }
     return(symbols)
   }
 )
