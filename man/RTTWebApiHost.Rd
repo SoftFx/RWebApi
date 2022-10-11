@@ -16,6 +16,18 @@ RTTWebApiHost
 \section{Methods}{
 
 \describe{
+\item{\code{GetAccountDetails(id)}}{Get Position Info}
+
+\item{\code{GetAccountInfo()}}{Get Position Info}
+
+\item{\code{GetAccountLogin(id)}}{Get Position Info}
+
+\item{\code{GetAccountWebToken(id)}}{Get Position Info}
+
+\item{\code{GetAllAccountsInfo()}}{Get Position Info}
+
+\item{\code{GetAssetsInfo(id = NULL)}}{Get Asset Info}
+
 \item{\code{GetBarsHistory(
   symbol,
   barsType = "Bid",
@@ -31,9 +43,19 @@ RTTWebApiHost
 
 \item{\code{GetDividends()}}{Get All Dividends}
 
+\item{\code{GetGrossTradesByAccountId(id)}}{Get Position Info}
+
+\item{\code{GetGrossTradesByTradeId(id)}}{Get Position Info}
+
+\item{\code{GetNetTradesByAccountId(id)}}{Get Position Info}
+
+\item{\code{GetNetTradesByTradeId(id)}}{Get Position Info}
+
 \item{\code{GetPipsValue(targetCurrency, symbols)}}{Get Pips Value}
 
-\item{\code{GetSymbolsInfo()}}{Get All Symbols}
+\item{\code{GetPositionInfo(id = NULL)}}{Get Position Info}
+
+\item{\code{GetSymbolsInfo(getPipsValue = FALSE, getLastPrice = TRUE)}}{Get All Symbols}
 
 \item{\code{GetTickHistory(
   symbol,
@@ -41,5 +63,7 @@ RTTWebApiHost
   endTime = as.POSIXct(Sys.Date(), tz = "GMT"),
   count = 0L
 )}}{Get Bar History}
+
+\item{\code{GetTradeInfo(id = NULL)}}{Get Trade Info}
 }}
 

@@ -3,6 +3,11 @@
 \name{GetSymbolsInfo}
 \alias{GetSymbolsInfo}
 \title{Get All Symbols}
+\arguments{
+\item{getPipsValue}{a bool. Add PipsValue Info for symbols or not (targetCurrency is USD).}
+
+\item{getLastPrice}{a bool. Add LastPrice Info for symbols or not.}
+}
 \value{
 data.table with symbol info
 }

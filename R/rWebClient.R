@@ -409,6 +409,416 @@ RTTWebClient$methods(
                       "AskVolume" = ticks$BestAsk$Volume, "AskType" = ticks$BestAsk$Type))
   }
 )
+
+# #' Get trade Info
+# #' @name GetAccountTradeRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetAccountTradeRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/trade")
+      if(!is.null(id))
+        url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    return(setDT(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetAccountRawMethods = function() {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/account")
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    trade["Throttling"] <- NULL
+    return(setDT(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerAccountsRawMethods = function() {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/account")
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    # trade["Throttling"] <- NULL
+    return(as.data.table(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerAccountDetailsRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/account/details")
+      if(!is.null(id)){
+        url_rel <- paste0(url_rel,"/",id)
+      }else{
+        stop(paste("AccountId required"))
+      }
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    # trade["Throttling"] <- NULL
+    return(as.data.table(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerAccountLoginRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/account/login")
+      if(is.null(id))
+        stop(paste("AccountId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    # trade["Throttling"] <- NULL
+    return(as.data.table(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerAccountWebTokenRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/account/webapitoken")
+      if(is.null(id))
+        stop(paste("AccountId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    # trade["Throttling"] <- NULL
+    return(as.data.table(trade))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerGrossTradeRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/gross/trade")
+      if(is.null(id))
+        stop(paste("AccountId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- as.data.table(fromJSON(data))
+    return(trade)
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerGrossAccTradesRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/gross/trades")
+      if(is.null(id))
+        stop(paste("AccountId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- as.data.table(fromJSON(data))
+    return(trade)
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerNetTradeByIdRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/net/trade")
+      if(is.null(id))
+        stop(paste("TradeId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    return(as.data.table(trade$NetPosition))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetAccountRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerNetAccTradesRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/net/trades")
+      if(is.null(id))
+        stop(paste("AccountId required"))
+      url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- as.data.table(fromJSON(data))
+    return(trade)
+  }
+)
+
+# #' Get trade Info
+# #' @name GetAssetRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetAssetRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/asset")
+      if(!is.null(id))
+        url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    return(setDT(trade))
+  }
+)
+
+# #' Get position Info
+# #' @name GetPositionRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetPositionRawMethods = function(id = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/position")
+      if(!is.null(id))
+        url_rel <- paste0(url_rel,"/",id)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    trade <- fromJSON(data)
+    return(setDT(trade))
+  }
+)
+
 # #' Init Public Web Client Obj
 # #'@name InitPublicWebClient
 # #'@param server a character. Web Address.
@@ -441,7 +851,9 @@ InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L,
 #' @name RTTWebApiHost
 #' @field client. RTTWebClient obj.
 RTTWebApiHost <- setRefClass("RTTWebApiHost",
-                            fields = list(client = "RTTWebClient"),
+                            fields = list(
+                              client = "RTTWebClient"
+                            ),
                             methods = list(
                               initialize = function(newWebClient){
                                 .self$client <- newWebClient
@@ -577,6 +989,153 @@ RTTWebApiHost$methods(
   }
 )
 
+
+#' Get Asset Info
+#' @name GetAssetsInfo
+#' @param id a bool. Assets id (optional)
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAssetsInfo = function(id = NULL) {
+    "Get Asset Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    assets <- Throttling(.self$client$GetAssetRawMethods, id)
+    return(assets)
+  }
+)
+
+#' Get Asset Info
+#' @name GetTradeInfo
+#' @param id a bool. Assets id (optional)
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetTradeInfo = function(id = NULL) {
+    "Get Trade Info"
+    trade <- Throttling(.self$client$GetAccountTradeRawMethods, id)
+    return(trade)
+  }
+)
+
+
+#' Get Position Info
+#' @name GetAssetsInfo
+#' @param id a bool. Assets id (optional)
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetPositionInfo = function(id = NULL) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    position <- Throttling(.self$client$GetPositionRawMethods, id)
+    return(position)
+  }
+)
+
+#' Get Account Info
+#' @name GetAccountInfo
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAccountInfo = function() {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetAccountRawMethods)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetAllAccountsInfo
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAllAccountsInfo = function() {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerAccountsRawMethods)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetAccountDetails
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAccountDetails = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerAccountDetailsRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetAccountLogin
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAccountLogin = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerAccountLoginRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetAccountWebToken
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetAccountWebToken = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerAccountWebTokenRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetGrossTradesByTradeId
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetGrossTradesByTradeId = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerGrossTradeRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetGrossTradesByAccountId
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetGrossTradesByAccountId = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerGrossAccTradesRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetNetTradesByTradeId
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetNetTradesByTradeId = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerNetTradeByIdRawMethods, id)
+    return(account)
+  }
+)
+
+#' Get Account Info
+#' @name GetNetTradesByAccountId
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetNetTradesByAccountId = function(id) {
+    "Get Position Info"
+    # symbols <- .self$client$GetSymbolsInfoRawMethod()
+    account <- Throttling(.self$client$GetManagerNetAccTradesRawMethods, id)
+    return(account)
+  }
+)
 
 #' Init RTTWebApiHost
 #'@param server a character. Web Address.
