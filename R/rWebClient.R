@@ -410,6 +410,44 @@ RTTWebClient$methods(
   }
 )
 
+# #' Get Split Info
+# #' @name GetSplitRawMethods
+# #' @return a data.table with split info
+# #'
+RTTWebClient$methods(
+  GetSplitRawMethods = function(symbolFilter = NULL) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/split")
+      if(!is.null(symbolFilter))
+        url_rel <- paste0(url_rel,"/", "bysymbol","/", symbolFilter)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE),
+                           httr::add_headers(Authorization = getHMACHeaders(url_abs, .self$web_api_id, .self$web_api_key, .self$web_api_secret)))
+    }else{
+      url_rel <- paste("/api/v2/public/split")
+      if(!is.null(symbolFilter))
+        url_rel <- paste0(url_rel,"/", "bysymbol","/", symbolFilter)
+      url_abs <- paste0(address, url_rel)
+      connect <- httr::GET(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    split <- as.data.table(fromJSON(data))
+    return(split)
+  }
+)
+
 # #' Get trade Info
 # #' @name GetAccountTradeRawMethods
 # #' @return a data.table with trade Info
@@ -748,6 +786,111 @@ RTTWebClient$methods(
     # data <- content(connect, "text", encoding = "UTF-8")
     trade <- as.data.table(fromJSON(data))
     return(trade)
+  }
+)
+
+# #' Get Account Info
+# #' @name GetManagerAccountSnapshotsRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerAccountSnapshotsRawMethods = function(loginVector, from, to, pagingDirection = as.character(NA), pagingSize = 100, pagingReportId = as.character(NA), groupFilter = character(0)) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/accountsnapshot")
+      url_abs <- paste0(address, url_rel)
+      body <- jsonlite::toJSON(list(
+        TimestampFrom = from,
+        TimestampTo = to,
+        Accounts = as.list(loginVector),
+        Groups = as.list(groupFilter),
+        PagingDirection = pagingDirection,
+        PagingSize = pagingSize,
+        PagingReportId = pagingReportId
+      ), auto_unbox = TRUE, pretty = TRUE)
+
+      connect <- httr::POST(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE), body = body,
+                            httr::add_headers(Authorization = getHMACHeaders(url_abs,
+                                                                             id = .self$web_api_id,
+                                                                             key = .self$web_api_key,
+                                                                             secret = .self$web_api_secret,
+                                                                             method = "POST",
+                                                                             body = body
+                            )
+
+                            ), content_type_json())
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    dataList <- fromJSON(data)
+    reports <- as.data.table(dataList$Reports)
+    lastReportId <- dataList$LastReportId
+    isEOS <- dataList$IsEndOfStream
+    return(list(reports, lastReportId, isEOS))
+  }
+)
+
+# #' Get Account Info
+# #' @name GetManagerAccountSnapshotsRawMethods
+# #' @return a data.table with trade Info
+# #'
+RTTWebClient$methods(
+  GetManagerTradeHistoryRawMethods = function(loginVector, from, to, pagingDirection = as.character(NA), pagingSize = 1000, pagingReportId = as.character(NA), orderId = as.character(NA), skipCancelOrder = TRUE) {
+    "Get Pip Value"
+    address <- .self$web_api_address
+    if(!grepl("^https://", address))
+      address <- paste0("https://", address)
+    portPattern <- paste0(":", .self$web_api_port, "$")
+    if(!grepl(portPattern, address))
+      address <- paste0(address, ":", .self$web_api_port)
+    if(length(.self$web_api_id) != 0 && length(.self$web_api_key) != 0 && length(.self$web_api_secret) != 0){
+      url_rel <- paste("/api/v2/manager/tradehistory")
+      url_abs <- paste0(address, url_rel)
+      body <- jsonlite::toJSON(list(
+        TimestampFrom = from,
+        TimestampTo = to,
+        Accounts = as.list(loginVector),
+        OrderId = orderId,
+        SkipCancelOrder = skipCancelOrder,
+        PagingDirection = pagingDirection,
+        PagingSize = pagingSize,
+        PagingReportId = pagingReportId
+      ), auto_unbox = TRUE, pretty = TRUE)
+
+      connect <- httr::POST(url_abs, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L, verbose = FALSE), body = body,
+                            httr::add_headers(Authorization = getHMACHeaders(url_abs,
+                                                                             id = .self$web_api_id,
+                                                                             key = .self$web_api_key,
+                                                                             secret = .self$web_api_secret,
+                                                                             method = "POST",
+                                                                             body = body
+                            )
+
+                            ), content_type_json())
+    }else{
+      stop(paste("Only private connection can be used. Enter HMAC Id, Key..."))
+    }
+    data <- httr::content(connect, "text", encoding = "UTF-8")
+    if(connect$status_code != 200) {
+      stop(paste("status_code is not OK", connect$status_code, as.character(data)))
+    }
+    # data <- content(connect, "text", encoding = "UTF-8")
+    dataList <- fromJSON(data)
+    reports <- as.data.table(dataList$Reports)
+    lastReportId <- dataList$LastReportId
+    isEOS <- dataList$IsEndOfStream
+    return(list(reports, lastReportId, isEOS))
   }
 )
 
@@ -1136,6 +1279,85 @@ RTTWebApiHost$methods(
     return(account)
   }
 )
+
+#' Get Splits Info
+#' @name GetSplits
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetSplits = function(symbolFilter = NULL) {
+    "Get Split Info"
+    res <- Throttling(.self$client$GetSplitRawMethods, symbolFilter)
+    res[, StartTime := as.POSIXct(round(StartTime / 1000), tz = "UTC", origin = origin)]
+    return(res)
+  }
+)
+
+#' Get Account Snapshots Info
+#' @name GetManagerAccountSnapshots
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetManagerAccountSnapshots = function(loginVector, from, to, pagingDirection = as.character(NA), pagingSize = 100, groupFilter = character(0)) {
+    "Get Account Snapshots Info"
+    isEOS <- FALSE
+    fromInMs <- round(as.double(from) * 1000)
+    toInMs <- round(as.double(to) * 1000)
+    lastReportId <- as.character(NA)
+    currentIndex <- 0
+    max_batch <- 1000
+    list_dt <- vector("list", max_batch)
+    while(!isEOS) {
+      print(address(list_dt))
+      batch <- Throttling(.self$client$GetManagerAccountSnapshotsRawMethods, loginVector, fromInMs, toInMs, pagingSize = pagingSize, pagingReportId = lastReportId, groupFilter = groupFilter)
+      list_dt[[currentIndex + 1]] <- batch[[1]]
+      currentIndex <- currentIndex + 1
+      if(currentIndex > round(length(list_dt) / 2)){
+        print("Extend memory")
+        list_dt <- c(list_dt, rep(list(NULL), length(list_dt)))
+      }
+      lastReportId <- batch[[2]]
+      isEOS <- batch[[3]]
+      print(lastReportId)
+      print(isEOS)
+    }
+    res <- rbindlist(list_dt)
+    res[, Time := as.POSIXct(Timestamp / 1000, tz = "GMT", origin = origin)]
+    return(res)
+  }
+)
+
+#' Get Account Snapshots Info
+#' @name GetManagerTradeHistory
+#' @return data.table with asset info
+RTTWebApiHost$methods(
+  GetManagerTradeHistory = function(loginVector, from, to, pagingDirection = as.character(NA), pagingSize = 100, orderId = as.character(NA), skipCancelOrder = TRUE) {
+    "Get TradeHistoryReport Info"
+    isEOS <- FALSE
+    fromInMs <- round(as.double(from) * 1000)
+    toInMs <- round(as.double(to) * 1000)
+    lastReportId <- as.character(NA)
+    currentIndex <- 0
+    max_batch <- 1000
+    list_dt <- vector("list", max_batch)
+    while(!isEOS) {
+      print(address(list_dt))
+      batch <- Throttling(.self$client$GetManagerTradeHistoryRawMethods, loginVector, fromInMs, toInMs, pagingSize = pagingSize, pagingReportId = lastReportId, orderId = orderId, skipCancelOrder = skipCancelOrder)
+      list_dt[[currentIndex + 1]] <- batch[[1]]
+      currentIndex <- currentIndex + 1
+      if(currentIndex > round(length(list_dt) / 2)){
+        print("Extend memory")
+        list_dt <- c(list_dt, rep(list(NULL), length(list_dt)))
+      }
+      lastReportId <- batch[[2]]
+      isEOS <- batch[[3]]
+      print(lastReportId)
+      print(isEOS)
+    }
+    res <- rbindlist(list_dt)
+    res[, TrTime := as.POSIXct(TrTime / 1000, tz = "GMT", origin = origin)][, PosClosed := as.POSIXct(PosClosed / 1000, tz = "GMT", origin = origin)]
+    return(res)
+  }
+)
+
 
 #' Init RTTWebApiHost
 #'@param server a character. Web Address.

@@ -47,6 +47,25 @@ RTTWebApiHost
 
 \item{\code{GetGrossTradesByTradeId(id)}}{Get Position Info}
 
+\item{\code{GetManagerAccountSnapshots(
+  loginVector,
+  from,
+  to,
+  pagingDirection = as.character(NA),
+  pagingSize = 100,
+  groupFilter = character(0)
+)}}{Get Account Snapshots Info}
+
+\item{\code{GetManagerTradeHistory(
+  loginVector,
+  from,
+  to,
+  pagingDirection = as.character(NA),
+  pagingSize = 100,
+  orderId = as.character(NA),
+  skipCancelOrder = TRUE
+)}}{Get TradeHistoryReport Info}
+
 \item{\code{GetNetTradesByAccountId(id)}}{Get Position Info}
 
 \item{\code{GetNetTradesByTradeId(id)}}{Get Position Info}
@@ -54,6 +73,8 @@ RTTWebApiHost
 \item{\code{GetPipsValue(targetCurrency, symbols)}}{Get Pips Value}
 
 \item{\code{GetPositionInfo(id = NULL)}}{Get Position Info}
+
+\item{\code{GetSplits(symbolFilter = NULL)}}{Get Split Info}
 
 \item{\code{GetSymbolsInfo(getPipsValue = FALSE, getLastPrice = TRUE)}}{Get All Symbols}
 
