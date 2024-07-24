@@ -967,7 +967,7 @@ RTTWebClient$methods(
 # #'@param server a character. Web Address.
 # #'@param port an integer. Port Number. Default is 8443
 # #'@return rTTWebClient obj.
-InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L) {
+InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.net", port=8443L) {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port))
 }
@@ -980,7 +980,7 @@ InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L) 
 # #'@param key a character. HMAC client key.
 # #'@param secret a character. HMAC secret key.
 # #'@return rTTWebClient obj.
-InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = "", key = "", secret = "") {
+InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.net", port=8443L, id = "", key = "", secret = "") {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port,
                       web_api_id = id,
@@ -1287,7 +1287,7 @@ RTTWebApiHost$methods(
   GetSplits = function(symbolFilter = NULL) {
     "Get Split Info"
     res <- Throttling(.self$client$GetSplitRawMethods, symbolFilter)
-    res[, StartTime := as.POSIXct(round(StartTime / 1000), tz = "UTC", origin = origin)]
+    res[, StartTime := as.POSIXct(round(StartTime / 1000), tz = "UTC", origin = "1970-01-01")]
     return(res)
   }
 )
@@ -1320,7 +1320,7 @@ RTTWebApiHost$methods(
       print(isEOS)
     }
     res <- rbindlist(list_dt)
-    res[, Time := as.POSIXct(Timestamp / 1000, tz = "GMT", origin = origin)]
+    res[, Time := as.POSIXct(Timestamp / 1000, tz = "GMT", origin =  "1970-01-01")]
     return(res)
   }
 )
@@ -1353,7 +1353,7 @@ RTTWebApiHost$methods(
       print(isEOS)
     }
     res <- rbindlist(list_dt)
-    res[, TrTime := as.POSIXct(TrTime / 1000, tz = "GMT", origin = origin)][, PosClosed := as.POSIXct(PosClosed / 1000, tz = "GMT", origin = origin)]
+    res[, TrTime := as.POSIXct(TrTime / 1000, tz = "GMT", origin =  "1970-01-01")][, PosClosed := as.POSIXct(PosClosed / 1000, tz = "GMT", origin =  "1970-01-01")]
     return(res)
   }
 )
@@ -1369,7 +1369,7 @@ RTTWebApiHost$methods(
 #'@importFrom methods new
 #'@importFrom withr local_options
 #'@export
-InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.com", port=8443L, id = NULL, key = NULL, secret = NULL){
+InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.net", port=8443L, id = NULL, key = NULL, secret = NULL){
   if(length(id) != 0 && length(key) != 0 && length(secret) != 0)
     return(RTTWebApiHost$new(InitPrivateWebClient(server, port, id, key, secret)))
   return(RTTWebApiHost$new(InitPublicWebClient(server, port)))
