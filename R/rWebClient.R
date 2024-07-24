@@ -965,9 +965,9 @@ RTTWebClient$methods(
 # #' Init Public Web Client Obj
 # #'@name InitPublicWebClient
 # #'@param server a character. Web Address.
-# #'@param port an integer. Port Number. Default is 8443
+# #'@param port an integer. Port Number. Default is 443
 # #'@return rTTWebClient obj.
-InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.net", port=8443L) {
+InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.net", port=443L) {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port))
 }
@@ -975,12 +975,12 @@ InitPublicWebClient <- function(server = "ttlivewebapi.fxopen.net", port=8443L) 
 # #' Init Private Web Client Obj
 # #'@name InitPrivateWebClient
 # #'@param server a character. Web Address.
-# #'@param port an integer. Port Number. Default is 8443
+# #'@param port an integer. Port Number. Default is 443
 # #'@param id a character. HMAC client id.
 # #'@param key a character. HMAC client key.
 # #'@param secret a character. HMAC secret key.
 # #'@return rTTWebClient obj.
-InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.net", port=8443L, id = "", key = "", secret = "") {
+InitPrivateWebClient <- function(server = "ttlivewebapi.fxopen.net", port=443L, id = "", key = "", secret = "") {
   return(RTTWebClient(web_api_address=server,
                       web_api_port = port,
                       web_api_id = id,
@@ -1361,7 +1361,7 @@ RTTWebApiHost$methods(
 
 #' Init RTTWebApiHost
 #'@param server a character. Web Address.
-#'@param port an integer. Port Number. Default is 8443
+#'@param port an integer. Port Number. Default is 443
 #'@param id a character. HMAC client id.
 #'@param key a character. HMAC client key.
 #'@param secret a character. HMAC secret key.
@@ -1369,7 +1369,7 @@ RTTWebApiHost$methods(
 #'@importFrom methods new
 #'@importFrom withr local_options
 #'@export
-InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.net", port=8443L, id = NULL, key = NULL, secret = NULL){
+InitRTTWebApiHost <- function(server = "ttlivewebapi.fxopen.net", port=443L, id = NULL, key = NULL, secret = NULL){
   if(length(id) != 0 && length(key) != 0 && length(secret) != 0)
     return(RTTWebApiHost$new(InitPrivateWebClient(server, port, id, key, secret)))
   return(RTTWebApiHost$new(InitPublicWebClient(server, port)))
